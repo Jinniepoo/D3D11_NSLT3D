@@ -5,9 +5,6 @@
 #include "PipeLine.h"
 #include "Input_Device.h"
 
-/* 클라이언트와 엔진의 중계자의 역활을 수행한다. */
-/* 클라이언트에서 엔진의 기능을 쓰고하자 한다라면 무조건 게임인스턴스를 떠올리면 되도록. */
-
 BEGIN(Engine)
 
 class ENGINE_DLL CGameInstance final : public CBase
