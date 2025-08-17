@@ -66,8 +66,8 @@ private:
 	_bool					m_bChasePlayer = { false };
 
 private:
-	_vector		 m_vVelocity;      // Velocity vector
-	_float		 m_fGravity;        // Gravity acceleration
+	_vector		 m_vVelocity;     
+	_float		 m_fGravity;        
 	_bool		 m_bIsAirborne;
 	_float		 m_fAttackTime;
 	MONSTER_DESC m_MonsterDesc;
