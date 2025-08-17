@@ -2,11 +2,6 @@
 
 #include "Base.h"
 
-/* 1. 렌더타겟들을 들고 있는다. */
-
-/* 2. 얘가 들고 있는 렌더타겟들을 장치에 바인딩해주는 역활. */
-/* 2.1 장치에 동시에 바인딩 되어야할 렌더타겟들을 미리 묶어두겠다.(그룹 == mrt) */
-
 BEGIN(Engine)
 
 class CTarget_Manager final : public CBase
