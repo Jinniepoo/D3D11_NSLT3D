@@ -8,11 +8,9 @@ float4 g_vCamPosition;
 
 struct VS_IN
 {
-	/* 그리기용 정점데이터 m_pVB */
     float3 vPosition : POSITION;
     float2 vPSize : PSIZE;
 
-	/* 변환용 정점데이터 m_pVBInstance */
     row_major matrix TransformMatrix : WORLD;
 	
     float2 vLifeTime : TEXCOORD0;
@@ -25,7 +23,6 @@ struct VS_OUT
     float2 vLifeTime : TEXCOORD0;
 };
 
-/* 언제 수행이되느냐? : 정점하나당 각자 수행.  */
 VS_OUT VS_MAIN(VS_IN In)
 {
     VS_OUT Out = (VS_OUT) 0;
@@ -34,7 +31,6 @@ VS_OUT VS_MAIN(VS_IN In)
     matWV = mul(g_WorldMatrix, g_ViewMatrix);
     matWVP = mul(matWV, g_ProjMatrix);
 
-	/* 그리기용 정점의 데이터를 로컬스페이스 내에서 TransformMatrix상태로 변환한다. */
     vector vPosition = mul(float4(In.vPosition, 1.f), In.TransformMatrix);
 
     Out.vPosition = mul(vPosition, g_WorldMatrix);
@@ -58,7 +54,6 @@ struct GS_OUT
     float2 vLifeTime : TEXCOORD1;
 };
 
-/* 언제 수행이되느냐? : 도형하나당 한번씩 수행. */
 [maxvertexcount(6)]
 void GS_MAIN(point GS_IN In[1], inout TriangleStream<GS_OUT> VertexStream)
 {
@@ -101,9 +96,6 @@ void GS_MAIN(point GS_IN In[1], inout TriangleStream<GS_OUT> VertexStream)
     VertexStream.RestartStrip();
 }
 
-
-
-
 struct PS_IN
 {
     float4 vPosition : SV_POSITION;
@@ -116,8 +108,6 @@ struct PS_OUT
     float4 vColor : SV_TARGET0;
 };
 
-/* 언제 수행이되느냐? : 픽셀하나당 한번씩 수행. */
-/* 픽셀의 색을 결정하낟. */
 PS_OUT PS_MAIN(PS_IN In)
 {
     PS_OUT Out = (PS_OUT) 0;
