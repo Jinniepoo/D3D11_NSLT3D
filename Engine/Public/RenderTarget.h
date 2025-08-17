@@ -31,14 +31,9 @@ public:
 private:
 	ID3D11Device*					m_pDevice = { nullptr };
 	ID3D11DeviceContext*			m_pContext = { nullptr };
-
-	/* SRV, RTV를 만들어주기위한 사전적인의미를 가진 객체. */
 	ID3D11Texture2D*				m_pTexture2D = { nullptr };
 
-	/* 쉐이더에 던져질 수 있는 타입. */
 	ID3D11ShaderResourceView*		m_pSRV = { nullptr };
-
-	/* 장치에 바인딩되어 그려질 수 있는 텍스쳐. */
 	ID3D11RenderTargetView*			m_pRTV = { nullptr };
 
 	_float4							m_vClearColor = {};
