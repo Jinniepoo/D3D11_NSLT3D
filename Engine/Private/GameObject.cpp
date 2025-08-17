@@ -32,17 +32,10 @@ HRESULT CGameObject::Initialize_Prototype()
 
 HRESULT CGameObject::Initialize(void* pArg)
 {
-	/* 원형을 생서하는 루틴으로 실제 사용하기위한 트랜스폼을 만들어버리자. */
-	/* 복제된 객체가 활용하기위한 실제 사용을 위한 트랜스폼을 만든다. */
-	/* 1. 객체를 생성하면 무조건 트랜스폼이 추가되는 루틴 */
-	/* 2. 트랜폼이 자동으로 객체에게 추가되기위해서는 기존 루틴대로라면 트랜슾모의 웒영이 존재해야하고 복제해서 객체에게 추가한다? */
-	/* 3. 트랜스폼 웒여을 엔진이 만들어야되는 상황이 생길 수 있다. 나는 이걸 별로 바라마지 않느다.  */
-	/* 4. 프로토타ㅑ입이라는 디자이퍁느을 안쓴다!!! Create로 바로 생성해서 실제 쓰기위한 녀석으로 추가해놔'ㅆ다. */	
 	m_pTransformCom = CTransform::Create(m_pDevice, m_pContext);
 	if (nullptr == m_pTransformCom)
 		return E_FAIL;
 
-	/* 타 객체가 나의 트랜스폼을 검색할 수 있도록 맵에 추가하낟. */
 	if (nullptr != Find_Component(m_strTransformTag))
 		return E_FAIL;
 
