@@ -22,7 +22,6 @@ HRESULT CVIBuffer_Cube::Initialize_Prototype()
 	m_ePrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
 #pragma region VERTEX_BUFFER
-	/* 생성하고자하는 버퍼의 속성을 설정하낟. */
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -31,7 +30,6 @@ HRESULT CVIBuffer_Cube::Initialize_Prototype()
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
 
-	/* 생성하고자하는 버퍼의 초기값을 설정한다. */
 	ZeroMemory(&m_InitialData, sizeof m_InitialData);
 	VTXCUBE* pVertices = new VTXCUBE[m_iNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXCUBE) * m_iNumVertices);
