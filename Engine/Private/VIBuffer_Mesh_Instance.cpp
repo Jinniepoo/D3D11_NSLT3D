@@ -17,19 +17,15 @@ HRESULT CVIBuffer_Mesh_Instance::Initialize_Prototype(const INSTANCE_DESC* pInst
     if (FAILED(__super::Initialize_Prototype(pInstanceDesc)))
         return E_FAIL;
 
-    m_iNumIndexPerInstance = 0;  // This might be set based on the mesh data
-    m_iVertexStride = sizeof(VTXMESH);  // Update to the size of your mesh vertex structure
-    m_iNumVertices = 0;  // This will be set based on the mesh data
+    m_iNumIndexPerInstance = 0;  
+    m_iVertexStride = sizeof(VTXMESH); 
+    m_iNumVertices = 0;  
     m_iIndexStride = sizeof(_ushort);
-    m_iNumIndices = 0;  // This will be set based on the mesh data
+    m_iNumIndices = 0;  
     m_iNumVertexBuffers = 2;
     m_eIndexFormat = DXGI_FORMAT_R16_UINT;
     m_ePrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-    // Initialize vertex and index buffers for the mesh
-    // Assume mesh data is loaded elsewhere and provided through pInstanceDesc or another method
-
-    // Initialize the instance buffer
     m_pInstanceVertices = new VTXMATRIX[m_iNumInstance];
     ZeroMemory(m_pInstanceVertices, sizeof(VTXMATRIX) * m_iNumInstance);
 
@@ -99,10 +95,8 @@ HRESULT CVIBuffer_Mesh_Instance::Create_Buffer(ID3D11Buffer** ppBuffer, const D3
 
     HRESULT hr = S_OK;
 
-    // Release the existing buffer if it exists
     Safe_Release(*ppBuffer);
 
-    // Create the buffer
     hr = m_pDevice->CreateBuffer(&BufferDesc, &InitialData, ppBuffer);
 
     if (FAILED(hr))
