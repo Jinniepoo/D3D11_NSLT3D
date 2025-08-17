@@ -99,7 +99,6 @@ HRESULT CLevel_GamePlay::Render()
 {
 	SetWindowText(g_hWnd, L"New Super Lucky's Tale: Game Play");
 
-	//m_pGameInstance->Render_FontOutlined(L"Font_Default", to_wstring(m_pPlayer->Get_PlayerLife()), _float2(110.f, 55.f), XMVectorSet(0.f, 0.f, 1.f, 1.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
 	m_pGameInstance->Render_FontOutlined(L"Font_Default", to_wstring(m_pLives->Get_PlayerLife()), _float2(110.f, 55.f), XMVectorSet(0.f, 0.f, 1.f, 1.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
 	m_pGameInstance->Render_FontOutlined(L"Font_Default", L"x " + to_wstring(m_pCoin->Coin_Gained()), _float2(117.f, 115.f), XMVectorSet(0.f, 0.f, 1.f, 1.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
 
@@ -209,8 +208,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Models(const wstring& strLayerTag)
 
 	CloseHandle(m_hModelFile);
 
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
-
 	for (auto& pModelDesc : m_ModelDesc)
 	{
 		_char szConvert[MAX_PATH] = { };
@@ -260,7 +257,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Collectibles(const wstring& strLayerTag)
 {
 	_ulong dwByte = { 0 };
 	m_hModelFile = CreateFile(
-		//L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Test.dat",
 		L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Collectibles0823.dat",
 		GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
@@ -311,8 +307,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Collectibles(const wstring& strLayerTag)
 	}
 
 	CloseHandle(m_hModelFile);
-
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
 
 	for (auto& pModelDesc : m_CltbDesc)
 	{
@@ -524,7 +518,6 @@ HRESULT CLevel_GamePlay::Ready_Animated(const wstring& strLayerTag)
 		return E_FAIL;
 
 	/* GolemHead2 */
-	//GolemDesc.vPos = { 56.37f, 17.98f, 131.26f, 1.f };
 	GolemDesc.vPos = { -55.033f, 21.664f, 152.323f, 1.f };
 	if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, L"Prototype_GameObject_Anim_GolemHead", &GolemDesc)))
 		return E_FAIL;
@@ -540,12 +533,6 @@ HRESULT CLevel_GamePlay::Ready_Animated(const wstring& strLayerTag)
 	HoleDesc.vPos = { -109.56f, 25.10f, 138.58f, 1.f };
 	if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, L"Layer_FoxHole", L"Prototype_GameObject_Anim_FoxHole", &HoleDesc)))
 		return E_FAIL;
-
-	///* GiantGolem */
-	//CAnim_GiantGolem::GOLEM_DESC GolemDesc1;
-	//GolemDesc1.vPos = { 50.12f, 40.98f, 180.f, 1.f };
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, L"Prototype_GameObject_Anim_GiantGolem", &GolemDesc1)))
-	//	return E_FAIL;
 
 	return S_OK;
 }
@@ -704,12 +691,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Monster(const wstring& strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_NPCs(const wstring& strLayerTag)
 {
-	///* NPC - Guard */
-	//CAnim_Guard::GUARD_DESC GuardDesc;
-	//GuardDesc.vPos = { 32.6684f, 0.0115761f, 35.7767f, 1.f };
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, L"Prototype_GameObject_Anim_NPC_Guard", &GuardDesc)))
-	//	return E_FAIL;
-
 	return S_OK;
 }
 
