@@ -6,8 +6,6 @@
 #include "Burrow_Player.h"
 #include "GolemHead.h"
 #include "Level.h"
-//
-//_int CPlayer::m_iPlayerLife = { 5 };
 
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CGameObject{ pDevice, pContext }
@@ -51,9 +49,7 @@ HRESULT CPlayer::Initialize(void* pArg)
 
 	_float3 vInitialPos;
 	if (m_eLevel == LEVEL_GAMEPLAY)
-		//vInitialPos = _float3(48.54f, m_pNavigationCom->Get_CellHeight(), 118.69f); // After CheckPoint
-		//vInitialPos = _float3(-98.84f, m_pNavigationCom->Get_CellHeight(), 139.17f); // Before Puzzle
-		vInitialPos = _float3(32.23f, m_pNavigationCom->Get_CellHeight(), 16.09f); // Original
+		vInitialPos = _float3(32.23f, m_pNavigationCom->Get_CellHeight(), 16.09f); 
 	if (m_eLevel == LEVEL_PUZZLE)
 		vInitialPos = _float3(5.f, m_pNavigationCom->Get_CellHeight(), 5.f);
 
@@ -399,9 +395,7 @@ HRESULT CPlayer::Ready_Components()
 	if (LEVEL_GAMEPLAY == m_eLevel)
 	{	/* For.Com_Navigation */
 		CNavigation::NAVIGATION_DESC		NavigationDesc{};
-		NavigationDesc.iCurrentCellIndex = 54; // Original
-		//NavigationDesc.iCurrentCellIndex = 198;  // After CheckPoint
-		//NavigationDesc.iCurrentCellIndex = 301;  // Before Puzzle
+		NavigationDesc.iCurrentCellIndex = 54; 
 
 		if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
 			TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
@@ -432,7 +426,6 @@ HRESULT CPlayer::Ready_Components()
 	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
 
 	BoundingDesc.vExtents = _float3(0.6f, 1.5f, 0.6f);
-	//BoundingDesc.vExtents = _float3(0.6f, 1.5f, 0.6f);
 	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);
 
 	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_AABB"),
