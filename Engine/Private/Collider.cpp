@@ -26,11 +26,8 @@ HRESULT CCollider::Initialize_Prototype(TYPE eType)
 	m_eType = eType;	
 
 #ifdef _DEBUG
-	/* 이 콜라이더를 그리기위한 준비과정을 수행할거야 .*/
 	m_pBatch = new PrimitiveBatch<VertexPositionColor>(m_pContext);
-
 	m_pEffect = new BasicEffect(m_pDevice);
-
 	m_pEffect->SetVertexColorEnabled(true);
 
 	const void*	pShaderByteCode = { nullptr };
@@ -65,15 +62,11 @@ HRESULT CCollider::Initialize(void * pArg)
 }
 void CCollider::Update(_fmatrix WorldMatrix)
 {
-	/* CBounding 크랠스는 aabb, obb, sphere의 부모 타입이기때문에. */
-	/* 실제 할당된 객체의 Update를 호출하며 월드행렬을 전달할 수 있겠다. */
 	m_pBounding->Update(WorldMatrix);
 }
 
 _bool CCollider::Intersect(CCollider * pTargetCollider)
 {
-	/* CBounding 크랠스는 aabb, obb, sphere의 부모 타입이기때문에. */
-	/* 실제 할당된 객체의 Intersect를 호출하며 충돌비교한다. */
 	return m_pBounding->Intersect(pTargetCollider->m_eType, pTargetCollider->m_pBounding);
 }
 
