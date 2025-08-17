@@ -11,11 +11,9 @@ CLevel_Manager::CLevel_Manager()
 
 HRESULT CLevel_Manager::Change_Level(CLevel * pNewLevel)
 {
-	/* 기존 레벨용으로 할당됐던 메모리도 해소하낟.  */
 	if(nullptr != m_pCurrentLevel)
 	{
 		m_pGameInstance->Clear(m_pCurrentLevel->Get_LevelID());
-
 	}
 
 	Safe_Release(m_pCurrentLevel);
