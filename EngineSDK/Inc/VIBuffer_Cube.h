@@ -2,8 +2,8 @@
 
 #include "VIBuffer.h"
 
-
 BEGIN(Engine)
+
 class ENGINE_DLL CVIBuffer_Cube final : public CVIBuffer
 {
 	CVIBuffer_Cube(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
