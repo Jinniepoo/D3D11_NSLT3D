@@ -80,9 +80,6 @@ HRESULT CModelObjects_Boss::Render()
 		if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_DiffuseTexture", i, aiTextureType_DIFFUSE)))
 			return E_FAIL;
 
-		//if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-		//	return E_FAIL;
-
 		m_pShaderCom->Begin(0);
 		m_pModelCom->Bind_Buffers(i);
 		m_pModelCom->Render(i);
@@ -128,9 +125,6 @@ HRESULT CModelObjects_Boss::Bind_ShaderResources()
 
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
 		return E_FAIL;
-
-	//if (FAILED(m_pShaderCom->Bind_RawValue("g_bIsNear", &m_bNearCam, sizeof _bool)))
-	//	return E_FAIL;
 
 	return S_OK;
 }
