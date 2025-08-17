@@ -4,7 +4,6 @@ float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D g_DiffuseTexture;
 texture2D g_NormalTexture;
 
-/* »ÀµéÀÌ °¡Áö°í ÀÖ´Â CombinedTransformationMatrix ¹è¿­·Î °¡Á®¿Â´Ù. */
 float4x4 g_BoneMatrices[512];
 
 struct VS_IN
@@ -28,13 +27,6 @@ struct VS_OUT
     float3 vBinormal : BINORMAL;
 };
 
-// ¸®ÅÏ°ª VS_MAIN(float3	vPosition : POSITION, float2 vTexcoord : TEXCOORD)
-/* IA : VertexBuffer(4) + IndexBuffer(6 -> 012023) */
-/* SV_ : Shader Value : ³»°¡ ¼ÎÀÌ´õ¿¡¼­ Ã³¸®ÇØ¾ßÇÒ ¸ðµç ¿¬»êÀ» ³¡³ÂÀ¸´Ï ¾ÕÀ¸·Î´Â ´Ï°¡ ¾Ë¾Æ¼­ ÇØ¾ßÇÒ °úÁ¤À» ¼öÇàÇØ¶ó. */
-
-/* VertexShader */
-/* 1. Á¤Á¡ÀÇ ±âº»ÀûÀÎ º¯È¯(¿ùµå, ºä, Åõ¿µ)À» ¼öÇàÇÑ´Ù.: ·ÎÄÃ½ºÆäÀÌ½º»óÀÇ Á¤Á¡Á¤º¸¸¦ Åõ¿µÇà·Ä±îÁö °öÇØ¼­ Ã³¸®ÇØÁÖ´Â °úÁ¤ÀÌ ÇÊ¿äÇÏ´Ù . */
-/* 2. Á¤Á¡ÀÇ ±¸¼ºÀ» º¯°æÇÑ´Ù.  */
 VS_OUT VS_MAIN(VS_IN In)
 {
     VS_OUT Out = (VS_OUT) 0;
@@ -66,12 +58,6 @@ VS_OUT VS_MAIN(VS_IN In)
     return Out;
 }
 
-/* Triangle List·Î ±×¸®°í ÀÖ´Â °æ¿ì, Á¤Á¡ ¼¼°³°¡ Á¤Á¡ ½¦ÀÌ´õ¸¦ Åë°úÇÒ ¶§±îÁö ¸ðÀ¸´Â °úÁ¤À» °ÅÄ¡³®. */
-/* w³ª´©±â ¿¬»êÀ» ÅëÇØ¼­ Åõ¿µ¿¡ ÇØ´çÇÏ´Â °úÁ¤À» °ÅÄ¡³®. Á¤Á¡µéÀº Åõ¿µ½ºÆäÀÌ½º(-1, 1 ~ 1, -1) »ó¿¡ Á¸ÀçÇÏ³®. */
-/* ºäÆ÷Æ® ½ºÆäÀÌ½º·Î º¯È¯ÇÑ´Ù. Á¤Á¡µéÀº À©µµ¿ì ÁÂÇ¥°ø°£(0, 0 ~ winsizex, winsizey)¿¡ Á¸ÀçÇÑ´Ù.  */
-/* ·¡½º¶óÀÌÁî¸¦ ¼öÇàÇÏ°ÔµÈ´Ù. : Á¤Á¡ Á¤º¸¸¦ º¸°£ÇÏ¿© ÇÈ¼¿ÀÇ Á¤º¸¸¦ »ý¼ºÇÑ´Ù. */
-/* »ý¼ºµÈ ÇÈ¼¿À» ÇÈ¼¿ ½¦ÀÌ´õ·Î ´øÁ®¼­ ÇÈ¼¿ÀÇ »öÀ» °áÁ¤ÇÑ´Ù. */
-
 struct PS_IN
 {
     float4 vPosition : SV_POSITION;
@@ -91,12 +77,11 @@ struct PS_OUT
 
 };
 
-/* ÇÈ¼¿ÀÇ »öÀ» °áÁ¤ÇÏ³®. */
 PS_OUT PS_MAIN(PS_IN In)
 {
     PS_OUT Out = (PS_OUT) 0;
 
-	// Out.vColor = g_Texture.Sample(¾î¶²¹æ½ÄÀ¸·Î °¡Á®¿Ã°Çµ¥?, ¾îµð¿¡ »öÀ» °¡Á®¿Ã°Çµ¥?);
+	// Out.vColor = g_Texture.Sample(ì–´ë–¤ë°©ì‹ìœ¼ë¡œ ê°€ì ¸ì˜¬ê±´ë°?, ì–´ë””ì— ìƒ‰ì„ ê°€ì ¸ì˜¬ê±´ë°?);
     vector vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
     vector vNormalDesc = g_NormalTexture.Sample(LinearSampler, In.vTexcoord);
     
@@ -106,7 +91,6 @@ PS_OUT PS_MAIN(PS_IN In)
     
     vNormal = mul(vNormal, WorldMatrix);
     
-	/* ¾ËÆÄÅ×½ºÆ® ´õ ÀÌ»ó ·»´õ½ºÅ×ÀÌÃ÷·Î ¼³Á¤ÇÑ´Ù(x) */
     if (vMtrlDiffuse.a <= 0.1f)
         discard;
 
@@ -172,9 +156,6 @@ PS_OUT_LIGHTDEPTH PS_MAIN_LIGHTDEPTH(PS_IN_LIGHTDEPTH In)
 
 technique11 DefaultTechnique
 {
-	/* Pass : ¼ÎÀÌ´õ ±â´ÉÀÇ Ä¸½¶È­ (¿©·¯±â¹ýÀ» ¸ð¾Æ³õÀº) */
-
-	/* ºû¿¬»ê + ¸²¶óÀÌÆ® + ±×¸²ÀÚ + ¸ÞÅ»¸¯ */
     pass Default
     {
         SetRasterizerState(RS_Default);
