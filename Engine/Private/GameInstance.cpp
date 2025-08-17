@@ -104,8 +104,6 @@ void CGameInstance::Tick_Engine(_float fTimeDelta)
 	m_pPicking->Tick();
 	m_pPixelPicking->Update();
 	m_pObject_Manager->PriorityTick(fTimeDelta);
-	
-	/* 카메라가 갱신해준 뷰, 투영행렬을 이용하자. */
 
 	m_pObject_Manager->Tick(fTimeDelta);
 	m_pPipeLine->Update();
