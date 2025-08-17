@@ -2,7 +2,6 @@
 
 #include "Base.h"
 
-/* 애니메이션의 하나(공격모션)의 정보를 가진다. */
 BEGIN(Engine)
 
 class CAnimation final : public CBase
