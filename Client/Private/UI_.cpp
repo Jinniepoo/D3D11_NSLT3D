@@ -61,10 +61,7 @@ HRESULT CMain_Book::Render()
 	{
 		if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_DiffuseTexture", (_uint)i, aiTextureType_DIFFUSE)))
 			return E_FAIL;
-
-		//if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-		//	return E_FAIL;
-
+		
 		m_pShaderCom->Begin(0);
 
 		m_pModelCom->Render((_uint)i);
