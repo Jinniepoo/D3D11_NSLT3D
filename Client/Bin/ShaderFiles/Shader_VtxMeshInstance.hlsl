@@ -25,7 +25,7 @@ struct VS_IN
 struct VS_OUT
 {
     float4 vPosition : SV_POSITION;
-    float4 vNormal : NORMAL; /* 월드 스페이스 노멀 */
+    float4 vNormal : NORMAL; 
     float2 vTexcoord : TEXCOORD0;
     float4 vProjPos : TEXCOORD1;
     float3 vTangent : TANGENT;
