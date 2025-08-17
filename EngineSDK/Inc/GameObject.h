@@ -2,8 +2,6 @@
 
 #include "Transform.h"	
 
-/*클라이언트개발자가 실질적으로 생성해낸 객체타입(Player, Monster)의 부모가 되는 클래스이다. */
-
 /* LPDIRECT3DDEVICE9 == ID3D11Device + ID3D11DeviceContext */
 
 BEGIN(Engine)
