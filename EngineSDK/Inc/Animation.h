@@ -2,7 +2,7 @@
 
 #include "Base.h"
 
-/* ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ÇÏ³ª(°ø°İ¸ğ¼Ç)ÀÇ Á¤º¸¸¦ °¡Áø´Ù. */
+/* ì• ë‹ˆë©”ì´ì…˜ì˜ í•˜ë‚˜(ê³µê²©ëª¨ì…˜)ì˜ ì •ë³´ë¥¼ ê°€ì§„ë‹¤. */
 BEGIN(Engine)
 
 class CAnimation final : public CBase
@@ -24,16 +24,14 @@ public:
 
 private:
 	_char				m_szName[MAX_PATH] = {};
-	_float				m_fDuration = {}; /* ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ÃÑ Àç»ı °Å¸®. */
-	_float				m_fTickPerSecond = {}; /* ÃÊ´ç Àç»ı °Å¸®.(Àç»ı ¼Óµµ) */
-	_float				m_fCurrentTrackPosition = {}; /* ÇöÀç Àç»ı À§Ä¡ */
+	_float				m_fDuration = {}; 
+	_float				m_fTickPerSecond = {}; 
+	_float				m_fCurrentTrackPosition = {}; 
 
-	/* ÀÌ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ıÇÏ´Âµ¥ ÇÊ¿äÇÑ »ÀÀÇ °¹¼ö. == */
-	/* ÀÌ ¾Ö´Ô¿¡¤Ó¼ÇÀÌ »ç¿ëÇÏ´Â »ÀÀÇ °¹¼ö. */
+
 	_uint						m_iNumChannels = {};
 	vector<class CChannel*>		m_Channels;
-	/* ¿ø·¡ Ã¤³Î(»À)ÀÌ ÇöÀç ¾îµğ Å°ÇÁ·¹ÀÓ±îÁö Àç»ıµÈ°ÇÁö¸¦ ÀúÀåÇÏ°í ÀÖ´ø µ¥ÀÌÅÍ¸¦ */
-	/* ¾Ö´Ï¸ŞÀÌ¼ÇÂÊ(¹Ù±ù)À¸·Î »©ÁØ»óÈ². */
+
 	vector<_uint>				m_CurrentKeyFrameIndices;
 
 	_bool						m_isFinished = { false };
