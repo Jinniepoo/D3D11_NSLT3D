@@ -58,8 +58,3 @@ void ClassName::Destroy_Instance()						\
 		m_pInstance = nullptr;							\
 	}													\
 }
-
-
-
-
-// 선언과 동시에 초기화 불가능, 먼저 선언된 전역변수와 자료형, 변수명까지 일치하는 상태에서만 사용 가능
