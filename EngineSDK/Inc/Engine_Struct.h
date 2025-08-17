@@ -101,12 +101,7 @@ namespace Engine
 		XMFLOAT2		vTexcoord;
 		XMFLOAT3		vTangent;
 
-		/* 이 정점은 어떤 뼈들의 상태를 받아와야하는가? 저장의 형태 : 뼈의 인덱스로 저장.*/
-		/* 전체 뼈 중의 인덱스를 의미하는게 아니다. */
-		/* 이 메시에 영향을 주는 뼈들 중에서의 인덱스를 지정하는거다. */
 		XMUINT4			vBlendIndices;
-
-		/* 위에서 정의한 각각의 뼈가 몇 프로나 정점에 적용되야하는지에 대한 정보를 정규화한 실수로 저장한다. */
 		XMFLOAT4		vBlendWeights;
 
 		static const unsigned int	iNumElements = { 6 };
