@@ -56,48 +56,6 @@ void CUI_LuckyComplete::PriorityTick(_float fTimeDelta)
 
 void CUI_LuckyComplete::Tick(_float fTimeDelta)
 {
-	/*m_fElapsedTime += fTimeDelta;
-
-	const float fAppearDuration = 0.3f;
-	const float fStayDuration = 1.f;
-	const float fTotalDuration = fAppearDuration + fStayDuration;
-
-	float fNormalizedTime = m_fElapsedTime / fTotalDuration;
-	if (fNormalizedTime > 1.0f) fNormalizedTime = 1.0f;
-
-	_vector vInitPos = XMVectorSet(g_iWinSizeX * 0.5f, g_iWinSizeY * 0.5f, 0.f, 0.f);
-	_vector vFinalPos = XMVectorSet(g_iWinSizeX * 0.5f, g_iWinSizeY * 0.25f, 0.f, 0.f);
-
-	_vector vInitScale = XMVectorSet(m_fSizeX * 1.2f / 30.f, m_fSizeY * 1.2f / 30.f, 1.f, 0.f);
-	_vector vFinalScale = XMVectorSet(m_fSizeX, m_fSizeY, 1.f, 0.f);
-
-	_vector vCurScale;
-	_vector vCurPos;
-
-	if (fNormalizedTime <= fAppearDuration / fTotalDuration)
-	{
-		float phaseNormalizedTime = fNormalizedTime / (fAppearDuration / fTotalDuration);
-		vCurScale = XMVectorLerp(vInitScale, vFinalScale, phaseNormalizedTime);
-		vCurPos = XMVectorLerp(vInitPos, vFinalPos, phaseNormalizedTime);
-	}
-	else
-	{
-		vCurScale = vFinalScale;
-		vCurPos = vFinalPos;
-	}
-
-	_float3 vCurScaleFloat3;
-	XMStoreFloat3(&vCurScaleFloat3, vCurScale);
-	_float2 vCurPosFloat2;
-	XMStoreFloat2(&vCurPosFloat2, vCurPos);
-
-	m_pTransformCom->Set_Scale(vCurScaleFloat3);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(vCurPosFloat2.x - g_iWinSizeX * 0.5f, -vCurPosFloat2.y + g_iWinSizeY * 0.5f, 0.f, 1.f));
-
-	if (m_fElapsedTime >= fTotalDuration)
-	{
-		m_fElapsedTime = 0.0f;
-	}*/
 }
 
 
