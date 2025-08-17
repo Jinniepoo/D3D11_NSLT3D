@@ -26,8 +26,6 @@ private:
 
 	CGameInstance*				m_pGameInstance = { nullptr };
 	class CImGui_Manager*		m_pTool = { nullptr };
-	//class CImGui_Manager_Puzzle* m_pPuzzleTool = { nullptr };
-	//class CImGui_Manager_Boss*	m_pBossTool = { nullptr };
 
 private:
 #ifdef _DEBUG
