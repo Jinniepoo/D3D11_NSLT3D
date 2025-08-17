@@ -66,23 +66,16 @@ void CChannel::Update(_float fCurrentTrackPosition, const vector<CBone*>& Bones,
 	if (0.0f == fCurrentTrackPosition)
 		(*pCurrentKeyFrameIndex) = 0;
 
-	/* Fin. 현재 재생위치에 맞는 상태 행렬을 만든다. */
 	_matrix			TransformationMatrix = XMMatrixIdentity();
-
 	_vector			vScale, vRotation, vTranslation;
-
 	KEYFRAME		LastKeyFrame = m_KeyFrames.back();
 
-	/* 현재 재생 위치가 이 뼈의 마지막 키프레임을 넘어서면. */
 	if (fCurrentTrackPosition > LastKeyFrame.fTrackPosition)
 	{
 		vScale = XMLoadFloat3(&LastKeyFrame.vScale);
 		vRotation = XMLoadFloat4(&LastKeyFrame.vRotation);
 		vTranslation = XMVectorSetW(XMLoadFloat3(&LastKeyFrame.vTranslation), 1.f);
 	}
-	/* 현재 재생위치가 두개의 키프레임들 사이에 있다. */
-	/* 두개의 키프레임사이를 재생위치에 맞게 선형보간한다. */
-	/* (*pCurrentKeyFrameIndex) : 현재 재생중인 트랙포지션 기준 왼쪽에 존재하는 키프레임 인덷ㄱ스 */
 	else 
 	{
 		while (fCurrentTrackPosition >= m_KeyFrames[(*pCurrentKeyFrameIndex) + 1].fTrackPosition)
