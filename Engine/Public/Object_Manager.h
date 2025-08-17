@@ -2,12 +2,6 @@
 
 #include "Base.h"
 
-/* 1. 원형객체들을 보관한다. */
-/* 2. 원형객체를 찾아서 복제하여 사본객체를 생성한다. */
-/* 3. 위에서 생성한 사본객체를 보관한다. */
-/* 4. 보유하고있는 레이어들의 Tick들을 호출한다. */
-/* 5. 보유하고있는 레이어들의 Render (x : 그리는 순서를 관리해야 할 필요가 있어서. ) */
-
 BEGIN(Engine)
 
 class CObject_Manager final : public CBase
