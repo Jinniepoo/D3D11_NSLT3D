@@ -54,7 +54,6 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, const aiMesh * pAIM
 
 	_uint		iNumIndices = { 0 };
 
-	/* 삼각형당 루프를 돈다. */
 	for (size_t i = 0; i < pAIMesh->mNumFaces; i++)
 	{
 		pIndices[iNumIndices++] = pAIMesh->mFaces[i].mIndices[0];
@@ -126,7 +125,6 @@ HRESULT CMesh::Ready_VIBuffer_For_NonAnim(const aiMesh * pAIMesh, _fmatrix Trans
 {
 	m_iVertexStride = sizeof(VTXMESH);
 
-	/* 생성하고자하는 버퍼의 속성을 설정하낟. */
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -135,7 +133,6 @@ HRESULT CMesh::Ready_VIBuffer_For_NonAnim(const aiMesh * pAIMesh, _fmatrix Trans
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
 
-	/* 생성하고자하는 버퍼의 초기값을 설정한다. */
 	ZeroMemory(&m_InitialData, sizeof m_InitialData);
 	VTXMESH*		pVertices = new VTXMESH[m_iNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXMESH) * m_iNumVertices);
@@ -168,7 +165,6 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 {
 	m_iVertexStride = sizeof(VTXANIMMESH);
 
-	/* 생성하고자하는 버퍼의 속성을 설정하낟. */
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -177,7 +173,6 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
 
-	/* 생성하고자하는 버퍼의 초기값을 설정한다. */
 	ZeroMemory(&m_InitialData, sizeof m_InitialData);
 	VTXANIMMESH*		pVertices = new VTXANIMMESH[m_iNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXANIMMESH) * m_iNumVertices);
@@ -190,15 +185,10 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 		memcpy(&pVertices[i].vTangent, &pAIMesh->mTangents[i], sizeof(_float3));
 	}
 
-	/* 이 메시에 영향을 주는 뼈의 갯수. */
 	m_iNumBones = pAIMesh->mNumBones;
 		
-	/* 뼈들을 순회하는 이유 : */
-	/* aiMesh->aiBone안에 이 뼈가 영향을 주는 메시기준의 정점의 인덱스와 
-	정점에게 영향을 주는 Weights들을 가지고 있기 때문에 */
 	for (_uint i = 0; i < m_iNumBones; ++i)
 	{
-		/* 이 메시에 영향을 주는 ㅃㅕ들 중 i번째 뼈. */
 		aiBone*		pAIBone = pAIMesh->mBones[i];
 
 		_float4x4		OffsetMatrix{};
@@ -224,14 +214,8 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 
 		m_Bones.emplace_back(iBoneIndex);		
 
-		/* 이 i번째 뼈는 몇개의 정점에게 영향을 주는데? */
-		/* i번째 뼈가 영향을 주느 ㄴ정점들을 순회한다. */
 		for (size_t j = 0; j < pAIBone->mNumWeights; j++)
 		{			
-			/* pAIBone->mWeights[j].mVertexId : 이 뼈가 j번째 영향을 주는 정점의 인덱스 */
-			/* pAIBone->mWeights[j].mWeight : 이 뼈가 j번째 영향을 주는 pAIBone->mWeights[j].mVertexId번째 정점에게 몇 퍼나 영향을 주는가? */
-
-			/* 정점은 네개의 뼈대 정보를 가질 수 있다. == 정점은 최대 네개 뼈의 영향을 받을 수 있다. */
 			if (0.f == pVertices[pAIBone->mWeights[j].mVertexId].vBlendWeights.x)
 			{
 				pVertices[pAIBone->mWeights[j].mVertexId].vBlendIndices.x = i;
@@ -261,7 +245,6 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 	{
 		m_iNumBones = 1;
 
-		/* 이 메시랑 이름이 똑같은 뼈를 찾아서 푸쉬해놓자. */
 		_uint			iBoneIndex = { 0 };
 
 		auto	iter = find_if(Bones.begin(), Bones.end(), [&](CBone* pBone)->_bool
@@ -274,7 +257,6 @@ HRESULT CMesh::Ready_VIBuffer_For_Anim(const aiMesh * pAIMesh, vector<class CBon
 			return false;
 		});
 
-		/* 내 메시랑 이름이 같은 뼈의 인덱스(전체뼈중의)를 메시안에 보관한다. */
 		m_Bones.emplace_back(iBoneIndex);
 
 		_float4x4		OffsetMatrix;
