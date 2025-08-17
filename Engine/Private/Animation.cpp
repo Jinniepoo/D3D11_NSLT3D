@@ -48,7 +48,6 @@ HRESULT CAnimation::Initialize(const aiAnimation * pAIAnimation, const vector<CB
 
 void CAnimation::Update_TransformationMatrix(_float fTimeDelta, const vector<CBone*>& Bones, _bool isLoop)
 {
-	/* 애니메이션의 재생 위치를 증가시켜준다. */
 	m_fCurrentTrackPosition += m_fTickPerSecond * fTimeDelta;
 
 	if (m_fCurrentTrackPosition >= m_fDuration)
