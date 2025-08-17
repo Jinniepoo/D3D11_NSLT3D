@@ -2,9 +2,6 @@
 
 #include "Base.h"
 
-/* 네비게이션을 구성하는 삼각형 중 하나. */
-/* 이 삼각형이 전체 삼각형 중 몇번째 인지도 저장해두자. */
-
 BEGIN(Engine)
 
 class CCell final : public CBase
