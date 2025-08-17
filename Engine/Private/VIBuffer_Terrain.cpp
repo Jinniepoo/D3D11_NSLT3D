@@ -16,14 +16,12 @@ CVIBuffer_Terrain::CVIBuffer_Terrain(const CVIBuffer_Terrain & rhs)
 
 _bool CVIBuffer_Terrain::Picking(CTransform* pTransform, _float3* pOut)
 {
-	// Picking Ray의 시작지점 & 방향을 받아오기
 	CPicking* pPicking = m_pGameInstance->Get_Picking();
 
 	_matrix WorldMatrix = pTransform->Get_WorldMatrix();
 	_matrix WorldMatrixInverse = XMLoadFloat4x4(&pTransform->Get_WorldMatrixInverse());
 	_vector vRayDir, vRayPos;
 
-	// Terrain의 WorldMatrix -> Picking (위치를 터레인의 로컬스페이스로 변환한거를 받아옴)
 	pPicking->Compute_LocalRayInfo(&vRayDir, &vRayPos, WorldMatrix);
 
 	// 방향 -> Normalize
@@ -78,8 +76,6 @@ bool CVIBuffer_Terrain::CheckTriangleIntersection(const _vector& vRayPos, const 
 
 void CVIBuffer_Terrain::StorePickedPosition(const _vector& vRayPos, const _vector& vRayDir, float fDist, const _matrix& WorldMatrix, _float3* pOut)
 {
-	// 해당 삼각형 안에 있으면 true가 나오는데 로컬에서의 피킹위치를 아래 vPickPos로 구해주는거 피킹 위치 + 방향 * 거리 (거리는 위 인터섹트함수가 인자로 받아줌)
-	// 받아온 로컬위치를 다시 월드위치로 변환
 	_vector vPickPos = XMVectorAdd(vRayPos, XMVectorScale(vRayDir, fDist));
 	vPickPos = XMVector3TransformCoord(vPickPos, WorldMatrix);
 	XMStoreFloat3(pOut, vPickPos);
@@ -160,7 +156,6 @@ HRESULT CVIBuffer_Terrain::Initialize_Prototype(_uint iNumVerticesX, _uint iNumV
 
 #pragma endregion
 
-	/* 생성하고자하는 버퍼의 속성을 설정하낟. */
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -169,7 +164,6 @@ HRESULT CVIBuffer_Terrain::Initialize_Prototype(_uint iNumVerticesX, _uint iNumV
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
 
-	/* 생성하고자하는 버퍼의 초기값을 설정한다. */
 	ZeroMemory(&m_InitialData, sizeof m_InitialData);
 	m_InitialData.pSysMem = pVertices;
 
