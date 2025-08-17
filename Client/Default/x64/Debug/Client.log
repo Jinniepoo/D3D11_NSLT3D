@@ -1,0 +1,159 @@
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxAnimMesh.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxCube.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxMesh.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxMeshInstance.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxNorTex.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxPointInstance.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxPosTex.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxRectInstance.cso
+  stdafx.cpp
+  Anim_BabyGolem.cpp
+  Anim_Checkpoint.cpp
+  Anim_FoxHole.cpp
+  Anim_Boss.cpp
+  Anim_GolemHead.cpp
+  Anim_Guard.cpp
+  Body_Player.cpp
+  Burrow_Player.cpp
+  Camera_Player.cpp
+  CoinEffect.cpp
+  Collectibles_Boss.cpp
+  Collectible_Coin.cpp
+  Effect_Checkpoint.cpp
+  Effect_Dizzy.cpp
+  Effect_Startle.cpp
+  GolemHead.cpp
+  ImGui_Manager.cpp
+  Level_Boss.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: '=': 'const wchar_t'에서 'char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Private/ImGui_Manager.cpp'을(를) 컴파일하는 중)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18):
+  템플릿 인스턴스화 컨텍스트(가장 오래된 인스턴스화 컨텍스트)가
+  	C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\ImGui_Manager.cpp(274,25):
+  	컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  		C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\ImGui_Manager.cpp(274,25):
+  		'Client::CImGui_Manager::ImGui_MapTool'에서 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string'에 대한 첫 번째 참조를 확인하세요.
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2600,17):
+  	컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2756,18):
+  	컴파일되는 함수 템플릿 인스턴스화 '_OutIt *std::_Copy_n_unchecked4<const wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)'에 대한 참조를 확인하세요.
+          with
+          [
+              _OutIt=char *,
+              _Size=unsigned __int64,
+              _InIt=const wchar_t *,
+              _SizeTy=unsigned __int64
+          ]
+  
+  Level_Puzzle.cpp
+  Loading_BG.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  Camera_Free.cpp
+  Level_GamePlay.cpp
+  Level_Loading.cpp
+  Level_Main.cpp
+  Loader.cpp
+  Loading_Gear.cpp
+C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\Loading_Gear.cpp(58,30): warning C4244: '-=': 'double'에서 'Engine::_int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Private/Loading_Gear.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\Loading_Gear.cpp(59,80): warning C4244: '인수': 'Engine::_int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Private/Loading_Gear.cpp'을(를) 컴파일하는 중)
+  
+  Loading_Logo.cpp
+  MainApp.cpp
+  Main_NSLT.cpp
+  MazeBell.cpp
+  MazeDoor.cpp
+  MazeDoor_R.cpp
+  ModelObjects.cpp
+  ModelObjects_Boss.cpp
+  Monster.cpp
+C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\private\Monster.cpp(337,27): warning C4244: '+=': 'double'에서 'Engine::_float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/private/Monster.cpp'을(를) 컴파일하는 중)
+  
+  Monster_CrumbleB.cpp
+C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\Monster_CrumbleB.cpp(337,27): warning C4244: '+=': 'double'에서 'Engine::_float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Private/Monster_CrumbleB.cpp'을(를) 컴파일하는 중)
+  
+  Monster_CrumbleR.cpp
+C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Private\Monster_CrumbleR.cpp(337,27): warning C4244: '+=': 'double'에서 'Engine::_float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Private/Monster_CrumbleR.cpp'을(를) 컴파일하는 중)
+  
+  MovingWall.cpp
+  NoHead1.cpp
+  NoHead2.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  NoHead3.cpp
+  Particle_Explosion.cpp
+  Particle_Log.cpp
+  Particle_Snow.cpp
+  Player.cpp
+  Sky.cpp
+  Spring_Mushroom.cpp
+  Terrain.cpp
+  UI_Clover_Check.cpp
+  UI_Clover_L.cpp
+  UI_Clover_Paw.cpp
+  UI_Clover_Question.cpp
+  UI_Coins.cpp
+  UI_Heart_Filling.cpp
+  UI_Heart_Outline.cpp
+  UI_Lives.cpp
+  UI_Lucky.cpp
+  UI_LuckyComplete.cpp
+  UI_LuckyLetters.cpp
+  WoodenCrate.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  WoodenCrate_Heart.cpp
+  WoodenCrate_Triple.cpp
+  GraphEditor.cpp
+  ImCurveEdit.cpp
+  ImGradient.cpp
+  ImGuizmo.cpp
+  ImSequencer.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx11.cpp
+  imgui_impl_win32.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  Client.cpp
+  Gameplay_Defines.h
+  Puzzle_Defines.h
+  Stage1_BG.cpp
+  코드를 생성하고 있습니다...
+  Client.vcxproj -> C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Client.exe

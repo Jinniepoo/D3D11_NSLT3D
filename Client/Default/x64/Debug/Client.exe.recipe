@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Client.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxAnimMesh.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxCube.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxMesh.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxMeshInstance.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxNorTex.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxPointInstance.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxPosTex.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\hokon\OneDrive\바탕 화면\NSLT_3D\Client\Bin\Shader_VtxRectInstance.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

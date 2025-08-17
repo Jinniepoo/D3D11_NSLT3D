@@ -1,0 +1,5 @@
+﻿  stdafx.cpp
+  Client.cpp
+  MainApp.cpp
+d:\정의훈\143\3d\framework\client\public\mainapp.h(14): error C3668: 'CMainApp::Free': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  코드를 생성하고 있습니다...
