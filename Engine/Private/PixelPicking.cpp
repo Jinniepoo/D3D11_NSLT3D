@@ -16,12 +16,7 @@ CPixelPicking::CPixelPicking(ID3D11Device * pDevice, ID3D11DeviceContext * pCont
 HRESULT CPixelPicking::Initialize(HWND hWnd)
 {
 	m_hWnd = hWnd;
-
-	/* 1. 셰이더에서 픽킹이 필요한 픽셀들의 깊이를 렌더타겟에 저장해준다. */
-	/* 2. 렌더타겟텍스쳐로부터 깊이를 꺼내와서 월드위치를 계산한다. 단, 렌더타겟텍스쳐에서부터 직접 저장된 값을 꺼내올 수 없다.(D3D11_USAGE_DEFAULT)  */
-	/* 3. 위의 렌더타겟을 다른 텍스쳐에 복사하고 복사받은 텍스쳐를 락언락해서 값을 꺼내와야지. */
-
-	/* 3번에 해당하는 복사받을 텍스쳐를 미리 생성하여 준비한다. */
+	
 	D3D11_VIEWPORT			ViewportDesc{};
 	_uint					iNumViewports = { 1 };
 	m_pContext->RSGetViewports(&iNumViewports, &ViewportDesc);
@@ -53,8 +48,6 @@ HRESULT CPixelPicking::Initialize(HWND hWnd)
 
 void CPixelPicking::Update()
 {	
-	/* 픽킹용 깊이를 기록해놓은 렌더타겟을 내가 열수있는 텍스쳐에 복사해준다. */
-	/* 텍스쳐를 열어서 깊이를 얻어오는 작업이 가능해진거다. */
 	if (FAILED(m_pGameInstance->Copy_RT_Resource(TEXT("Target_PickedDepth"), m_pPickedDepthTexture)))
 		return;
 
@@ -62,15 +55,6 @@ void CPixelPicking::Update()
 
 	GetCursorPos(&ptMouse);
 
-	/* 뷰포트 상의 마우스 위치를 구했다. */
-	/* 1. m_pPickedDepthTexture텍스쳐를 열어서 픽킹용 픽셀의 깊이를 얻어오는 작업을 할꺼야. */
-	/* 2. 이픽셀은 몇개? (1280 * 720)이 만큼 있다.== 굉장히 많다. 마우스커서가 있는 위치의 픽셀 깊이하나를 얻어오고싶다. */
-	/* 3. . 마우스커서가 있는 위치의 픽셀 깊이하나를 얻어오고싶다. == 
-	_uint		iIndex = ptMouse.y * m_fViewWidth + ptMouse.x;*/
-	/* 3. 위의 연산식은 언제썼떤거여? api때, 마우스 위치에 해당하는 타일의 인덱스 구하는 연산. */
-
-
-	/* 1. 지금 구한 뷰포트 상의 마우스위치를 통해 월드스페이스 상의 마우스 위치를 구하기위한 과정에 활용이된다. */
 	ScreenToClient(m_hWnd, &ptMouse);
 
 	if (ptMouse.x < 0)
@@ -85,13 +69,9 @@ void CPixelPicking::Update()
 
 	D3D11_MAPPED_SUBRESOURCE		SubResource{};
 
-	/* 피킹용 깊이를 저장해놓은 테긋쳐를 연다! */
 	m_pContext->Map(m_pPickedDepthTexture, 0, D3D11_MAP_READ, 0, &SubResource);
 
 	_uint		iIndex = _uint(ptMouse.y * m_fViewWidth + ptMouse.x);
-
-	/* 마우스 있는 위치의 픽셀 정보를 얻어오낟. */
-	/* Out.vPickedDepth = vector(In.vProjPos.z / In.vProjPos.w, In.vProjPos.w / 3000.f, 0.f, 0.f); */
 
 	_float4		vDepth = ((_float4*)SubResource.pData)[iIndex];
 
@@ -99,22 +79,15 @@ void CPixelPicking::Update()
 
 	if (1.f == vDepth.w)
 		return;
-
-	/* ptMouse.x, ptMouse.y => 뷰포트 상의 위치다. 월드까지 역으로 연산을 해나가야한다. */
-
-	/* 뷰포트상의 위치(0, 0) ~ (wsx, wsy) -> 투영스페이스 상의 위치(-1, 1) ~ (1, -1)르 ㄹ구하낟. */	
+	
 	m_vPickPos.x = ptMouse.x / (m_fViewWidth * 0.5f) - 1.f;
 	m_vPickPos.y = ptMouse.y / (m_fViewHeight * -0.5f) + 1.f;
 	m_vPickPos.z = vDepth.x;
 	m_vPickPos.w = 1.f;	
 
-	/* 투영공간상의 위치 -> 뷰스페이스 상의 위치르 ㄹ구하낟. */
-	/* 역투영행렬을 바로 곱한 이유? -> 쉐이더에서 했다라면 바로 역투영행렬을 곱하면 안되었다. 나눴던 w를 곱해서 원근투영을 복구해주는 작업이 필요했엇다. */
-	/* 쉐이더가아니라 클라. TransformCoord함수는 알아서 w연산ㅇ에 대한 처리를 해준다. */
 	_matrix		ProjMatrixInv = m_pGameInstance->Get_Transform_Matrix_Inverse(CPipeLine::D3DTS_PROJ);
 	_vector		vPickPos = XMVector3TransformCoord(XMLoadFloat4(&m_vPickPos), ProjMatrixInv);
 
-	/* 뷰스페이스상의 위치 -> 월드 상의 위치르 ㄹ구하낟. */
 	_matrix		ViewMatrixInv = m_pGameInstance->Get_Transform_Matrix_Inverse(CPipeLine::D3DTS_VIEW);
 	vPickPos = XMVector3TransformCoord(vPickPos, ViewMatrixInv);
 	
