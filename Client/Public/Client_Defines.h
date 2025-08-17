@@ -2,7 +2,6 @@
 
 #include <process.h>
 
-/* 클라이언트에서 제작하는 모든 클래스들이 공통적으로 자주 사용하는 정의들을 모아둔다. */
 namespace Client
 {
 	const unsigned int		g_iWinSizeX = 1280;
