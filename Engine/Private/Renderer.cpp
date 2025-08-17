@@ -18,9 +18,6 @@ CRenderer::CRenderer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 
 HRESULT CRenderer::Initialize()
 {
-	/* µğÆÛµå ½¦ÀÌ´õ¸¦ À§ÇÑ ·»´õÅ¸°ÙµéÀ» Ãß°¡ÇÏ°Ú´Ù. */
-
-	/* ¿ø·¡´Â ¹é ¹öÆÛ¿¡ ±×·ÁÁ³¾î¾ßÇÒ ³»¿ë ±×´ë·Î ´Ù¸¥ ·»´õÅ¸°Ù¿¡ ±×¸®´Â ÀÛ¾÷À» ÇÏ¹Ç·Î */
 	D3D11_VIEWPORT			ViewportDesc{};
 	_uint					iNumViewports = { 1 };
 	m_pContext->RSGetViewports(&iNumViewports, &ViewportDesc);
@@ -90,7 +87,6 @@ HRESULT CRenderer::Initialize()
 	/* For.MRT_Result */
 	if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_Result"), TEXT("Target_Result"))))
 		return E_FAIL;
-	/* È­¸éÀ» ²Ë Ã¤¿ö¼­ Á÷±³Åõ¿µÇØÁÖ±âÀ§ÇÑ ¿ùµåÇà·Ä */
 	XMStoreFloat4x4(&m_WorldMatrix, XMMatrixIdentity());
 
 	m_WorldMatrix._11 = ViewportDesc.Width;
@@ -295,7 +291,6 @@ HRESULT CRenderer::Render_Shadow()
 
 HRESULT CRenderer::Render_NonBlend()
 {
-	/* Diffuse + Normal + Depth + Hit Å¸°ÙÀ» ¹ÙÀÎµùÇÏ³®. */
 	if (FAILED(m_pGameInstance->Begin_MRT(L"MRT_GameObjects")))
 		return E_FAIL;
 
@@ -317,7 +312,6 @@ HRESULT CRenderer::Render_NonBlend()
 
 HRESULT CRenderer::Render_NonBlend_B()
 {
-	/* Diffuse + Normal + Depth + Hit Å¸°ÙÀ» ¹ÙÀÎµùÇÏ³®. */
 	if (FAILED(m_pGameInstance->Begin_MRT(L"MRT_GameObjects")))
 		return E_FAIL;
 
@@ -415,7 +409,7 @@ HRESULT CRenderer::Render_LightAcc()
 	if (FAILED(m_pVIBuffer->Bind_Buffers()))
 		return E_FAIL;
 
-	/* ºû °¹¼ö¸¸Å­ »ç°¢ÇüÀ» ±×¸®³®. */
+	/* ë¹› ê°¯ìˆ˜ë§Œí¼ ì‚¬ê°í˜•ì„ ê·¸ë¦¬ë‚Ÿ. */
 	if (FAILED(m_pGameInstance->Render_Lights(m_pShader, m_pVIBuffer)))
 		return E_FAIL;
 
@@ -450,7 +444,6 @@ HRESULT CRenderer::Render_Deferred()
 	if (FAILED(m_pShader->Bind_Matrix("g_ProjMatrix", &m_ProjMatrix)))
 		return E_FAIL;
 
-	/* ±¤¿ø±âÁØÀ¸·Î Ç¥ÇöµÈ ºä, Åõ¿µÇà·ÄÀÌ´Ù. (Ä«¸Ş¶ó±âÁØx) */
 	_float4x4		LightViewMatrix, LightProjMatrix;
 
 	XMStoreFloat4x4(&LightViewMatrix, XMMatrixLookAtLH(XMVectorSet(30.f, 50.f, 30.f, 1.f), XMVectorSet(0.f, 0.f, 0.f, 1.f), XMVectorSet(0.f, 1.f, 0.f, 0.f)));
