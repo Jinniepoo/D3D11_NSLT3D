@@ -80,8 +80,6 @@ void CVIBuffer_Instance::Update_Spread(_float fTimeDelta)
 
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
-		/* void*로 뽑아낸 정점 배열의 가장 앞 주소를 1byte포인터형으로 형변화하여 i * m_iInstanceVertexStride를 더할때 마다 정점 하나씩 건너갈 수 있도록 처리 */
-		/* _ubyte*		pVertices  == i번째 정점의 가장 앞 주소. */
 		_ubyte* pVertices = static_cast<_ubyte*>(SubResource.pData) + i * m_iInstanceVertexStride;
 
 		_float3* pVertexPosition = reinterpret_cast<_float3*>(pVertices);
