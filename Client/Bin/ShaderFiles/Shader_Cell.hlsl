@@ -37,7 +37,6 @@ struct PS_OUT
 	float4		vColor : SV_TARGET0;
 };
 
-/* 픽셀의 색을 결정하낟. */
 PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT			Out = (PS_OUT)0;	
@@ -49,9 +48,6 @@ PS_OUT PS_MAIN(PS_IN In)
 
 technique11			DefaultTechnique
 {
-	/* Pass : 셰이더 기능의 캡슐화 (여러기법을 모아놓은) */
-
-	/* 빛연산 + 림라이트 + 그림자 + 메탈릭 */
 	pass Default
 	{		
 		SetRasterizerState(RS_Default);
