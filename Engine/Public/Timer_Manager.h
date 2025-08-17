@@ -2,9 +2,6 @@
 
 #include "Base.h"
 
-/* 여러개의 타이머를 태그(Key)로 구분하여 저장한다. */
-/* 특정 타이머를 계산하고 리턴해준다. */
-
 BEGIN(Engine)
 
 class CTimer_Manager final : public CBase
