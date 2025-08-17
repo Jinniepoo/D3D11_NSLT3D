@@ -128,23 +128,18 @@ _bool CNavigation::isMove(_fvector vPosition)
 	if (-1 == m_iCurrentIndex || m_iCurrentIndex >= m_Cells.size())
 		return false;
 
-	/* Cell¾È¿¡ ÀÖ´Â Á¡ ¼¼°³°¡ ·ÎÄÃ¿¡ Á¸Àç, ÀÎÀÚ·Î ¹Ş¾Æ¿Â vPosition ¿ùµå À§Ä¡. ½ÌÅ©¸¦ ¸ÂÃç¾ßµÈ´Ù. */
-	/* vPosition -> LocalPos·Î ¹Ù²Ù´Â ÀÛ¾÷À» ¼öÇàÇÏÀÚ. */
 	_vector		vLocalPos = XMVector3TransformCoord(vPosition, XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix)));
 
 	_int		iNeighborIndex = { -1 };
 
-	/* ¿òÁ÷ÀÌ°í³­ °á°ú°¡ ÇöÀç Á¸ÀçÇÑ´ø ¼¿¾È¿¡Á¸ÀçÇÑ´Ù. == ÇöÀç ¼¿ ¾È¿¡¼­ ¿òÁ÷ÀÎ°Å´Ù. */
 	if (true == m_Cells[m_iCurrentIndex]->isIn(vLocalPos, &iNeighborIndex))
 		return true;
 
-	else /* ÇöÀç ¼¿À» ¹ş¾î³µ´Ù. */
+	else 
 	{
-		/* ¹ş¾î³­ ¹æÇâ¿¡ ÀÌ¿ôÀÌ ¾øÀ¸¸é. */
 		if (-1 == iNeighborIndex)
 			return false;
 
-		/* ¹ş¾î³­ ¹æÇâ¿¡ ÀÌ¿ôÀÌ ÀÖÀ¸¸é. */
 		else
 		{
 			while (true)
@@ -221,7 +216,7 @@ HRESULT CNavigation::Tool_LoadNav(const _wstring& strNavigationDataFile)
 
 	_tchar szFilePath[MAX_PATH];
 	ZeroMemory(szFilePath, sizeof _tchar * MAX_PATH);
-	static TCHAR filter[] = L"¸ğµç ÆÄÀÏ\0*.*\0ÅØ½ºÆ® ÆÄÀÏ\0*.txt\0fbx ÆÄÀÏ\0*.fbx";
+	static TCHAR filter[] = L"ëª¨ë“  íŒŒì¼\0*.*\0í…ìŠ¤íŠ¸ íŒŒì¼\0*.txt\0fbx íŒŒì¼\0*.fbx";
 
 	Ofn.lStructSize = sizeof OPENFILENAME;
 	Ofn.lpstrFile = szFilePath;
