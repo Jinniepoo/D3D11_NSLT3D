@@ -2,10 +2,6 @@
 
 #include "Base.h"
 
-/* 뷰, 투영해열릉ㄹ 보관한다. */
-/* Update함수만들어서 뷰, 투영이놈들의 역행렬을 구해서 저장한다. */
-/* 꺼내준다. */
-
 BEGIN(Engine)
 
 class CPipeLine final : public CBase
