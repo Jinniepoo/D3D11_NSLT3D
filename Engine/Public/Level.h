@@ -2,8 +2,6 @@
 
 #include "Base.h"
 
-/* 클라이언트에서 실제 사용하기위해 만든 레벨들의 부모가 되는 클래스이다. */
-
 BEGIN(Engine)
 
 class ENGINE_DLL CLevel abstract : public CBase
