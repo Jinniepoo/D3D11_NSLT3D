@@ -3,9 +3,9 @@
 ![Banner Image](https://cdn1.epicgames.com/d3288d6aaf794eb4821bab4c5ba08a0a/offer/EGS_NewSuperLuckysTale_PlayfulStudios_S5-1920x1080-87e8ef98b49a1fe926a9d83639de0a3a.jpg)
 
 ## 프로젝트 소개
-**New Super Lucky's Tale**은 3D 액션 플랫폼 게임을 Unity로 제작한 포트폴리오 프로젝트입니다.  
-플레이어는 주인공을 조작하여 다양한 스테이지를 탐험하고, 장애물을 피하며, 아이템을 수집하고 적과 전투합니다.  
-이 프로젝트는 **게임플레이 시스템 구현, 캐릭터 컨트롤, AI, UI, 이펙트** 등 클라이언트 개발 역량을 보여주는 것을 목표로 합니다.
+**New Super Lucky's Tale**은 DirectX11을 사용해 제작한 3D 액션 게임 포트폴리오 프로젝트입니다.  
+주요 목표는 **DirectX11 기반 렌더링, GPU 파티클 시스템, 메모리 관리, 게임플레이 로직 구현**입니다.  
+Unity와 달리 모든 그래픽 파이프라인과 시스템을 직접 구현하여 클라이언트 프로그래머로서의 역량을 보여줍니다.
 
 ---
 
