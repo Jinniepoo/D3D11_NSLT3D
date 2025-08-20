@@ -20,7 +20,7 @@ Unity와 달리 모든 그래픽 파이프라인과 시스템을 직접 구현�
 
 ## 스크린샷 / GIF
 <p align="center">
-  <img src="./Screenshots/gameplay.gif" alt="Gameplay GIF" width="400">
+  <img src="./GitImages/DebugMode.gif.gif" alt="Gameplay GIF" width="800">
 </p>
 
 <p align="center">
