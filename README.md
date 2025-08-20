@@ -3,7 +3,7 @@
 ![Banner Image](https://cdn1.epicgames.com/d3288d6aaf794eb4821bab4c5ba08a0a/offer/EGS_NewSuperLuckysTale_PlayfulStudios_S5-1920x1080-87e8ef98b49a1fe926a9d83639de0a3a.jpg)
 
 <p align="center">
-   (출처: 에픽게임즈 사이트)
+   (출처: 에픽게임즈)
 </p>
 
 ---
