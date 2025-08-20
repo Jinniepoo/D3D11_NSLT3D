@@ -28,7 +28,7 @@
 ---
 ## Characters
 <p align="center">
-   <img src="Packages/GitImages/DebugMode.gif" width="900" />
+   <img src="GitImages/DebugMode.gif" width="900" />
 </p>
 
 - Unity Character Controller와 NavMeshAgent을 활용하였습니다.
