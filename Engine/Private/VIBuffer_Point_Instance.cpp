@@ -17,7 +17,6 @@ HRESULT CVIBuffer_Point_Instance::Initialize_Prototype(const INSTANCE_DESC* pIns
 	if (FAILED(__super::Initialize_Prototype(pInstanceDesc)))
 		return E_FAIL;
 
-	/* 모델하나그리는데 인덱스 몇 개 필요해? */
 	m_iNumIndexPerInstance = 1;
 	m_iVertexStride = sizeof(VTXPOINT);
 	m_iNumVertices = 1;
@@ -28,7 +27,6 @@ HRESULT CVIBuffer_Point_Instance::Initialize_Prototype(const INSTANCE_DESC* pIns
 	m_ePrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_POINTLIST;
 
 #pragma region VERTEX_BUFFER
-	/* 생성하고자하는 버퍼의 속성을 설정하낟. */
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -37,7 +35,6 @@ HRESULT CVIBuffer_Point_Instance::Initialize_Prototype(const INSTANCE_DESC* pIns
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
 
-	/* 생성하고자하는 버퍼의 초기값을 설정한다. */
 	ZeroMemory(&m_InitialData, sizeof m_InitialData);
 	VTXPOINT* pVertices = new VTXPOINT[m_iNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXPOINT) * m_iNumVertices);
@@ -85,13 +82,10 @@ HRESULT CVIBuffer_Point_Instance::Initialize_Prototype(const INSTANCE_DESC* pIns
 
 	if (true == pInstanceDesc->isLoop)
 	{
-		/* 다시 처음위치로 돌아갈 수 있도록 초기위치를 저장하기위한 공간을 할당하자. */
 		m_pInstanceVertexPos = new _float4[m_iNumInstance];
 		ZeroMemory(m_pInstanceVertexPos, sizeof(_float4) * m_iNumInstance);
 	}
 
-
-	/* 인스턴스 정점버퍼에 들어가있는 각 정점(행렬)의 상태를 정점별로 셋팅한다.*/
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
 		_float		fScale = Compute_RandomNumber(pInstanceDesc->vScale.x, pInstanceDesc->vScale.y);

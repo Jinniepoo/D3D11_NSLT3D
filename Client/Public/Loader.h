@@ -3,9 +3,6 @@
 #include "Client_Defines.h"
 #include "Base.h"
 
-/* 2. 로딩 다음 레벨에 필요한 자원을 생성한다.  */
-/* 다음 레벨에 대한 자원 로딩 : 멀티스레드 */
-
 BEGIN(Engine)
 class CGameInstance;
 END

@@ -169,7 +169,6 @@ HRESULT CBurrow_Player::Ready_Components()
 
 HRESULT CBurrow_Player::Bind_ShaderResources()
 {
-	/* 부모의 행렬을 완전히 무시한 상황. */
 	//if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
 	//	return E_FAIL;
 

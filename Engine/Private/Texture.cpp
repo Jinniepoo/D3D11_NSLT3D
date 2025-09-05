@@ -28,7 +28,6 @@ HRESULT CTexture::Initialize_Prototype(const _wstring& strTextureFilePath, _uint
 
 		wsprintf(szTextureFilePath, strTextureFilePath.c_str(), i);
 				
-		/* D:\Á¤ÀÇÈÆ\143\3d\Framework\Engine\ThirdPartyLib\Temp.jpg */
 		_wsplitpath_s(szTextureFilePath, nullptr, 0, nullptr, 0, nullptr, 0, szExt, MAX_PATH);
 
 		if (false == lstrcmp(szExt, TEXT(".dds")))

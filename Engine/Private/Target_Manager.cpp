@@ -35,16 +35,12 @@ HRESULT CTarget_Manager::Add_RenderTarget(const _wstring& strRenderTargetTag, _u
 
 HRESULT CTarget_Manager::Add_MRT(const _wstring& strMRTTag, const _wstring& strRenderTargetTag)
 {
-	/* 멀티 렌더 타겟에 추가해주기위한 렌더 타겟을 찾았다. */
 	CRenderTarget* pRenderTarget = Find_RenderTarget(strRenderTargetTag);
 	if (nullptr == pRenderTarget)
 		return E_FAIL;
 
-	/* 위에서 찾아놓은 렌더타겟을 추가해주기위한 멀티렌더 타겟을 찾자. */
 	list<CRenderTarget*>* pMRTList = Find_MRT(strMRTTag);
 
-	/* 추가하려 했던 멀티렌더 타겟 그룹이 없었다. */
-	/* 새롭게 그룹을 생성해주자. */
 	if (nullptr == pMRTList)
 	{
 		list<CRenderTarget*>	MRTList;
@@ -52,7 +48,7 @@ HRESULT CTarget_Manager::Add_MRT(const _wstring& strMRTTag, const _wstring& strR
 
 		m_MRTs.emplace(strMRTTag, MRTList);
 	}
-	else 	/* 추가하려 했던 멀티렌더 타겟 그룹이 있었다. */
+	else 	
 		pMRTList->emplace_back(pRenderTarget);
 
 	Safe_AddRef(pRenderTarget);
@@ -73,8 +69,6 @@ HRESULT CTarget_Manager::Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencil
 	if (nullptr == pMRTList)
 		return E_FAIL;
 
-	/* 장치에 이미 바인되어있었던 렌더타겟 하나만 가져올게.(1개, 백버퍼) */
-	/* 깊이 버퍼도 가져와서 저장해두자. */
 	m_pContext->OMGetRenderTargets(1, &m_pOldRTV, &m_pDSV);
 
 	ID3D11RenderTargetView* pMRTs[8] = {};
@@ -90,10 +84,7 @@ HRESULT CTarget_Manager::Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencil
 
 	if (nullptr != pDSV)
 		m_pContext->ClearDepthStencilView(pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
-	/* 장치에 렌더타겟을 바인딩한다. */
-	/* == 이 렌더타겟에 뭔가르 그리겠다. */
-	/* == 그릴때 마다 깊이 테스트가 필요하다. */
-	/* == 렌더타겟과 깊이버퍼를 함께 바인딩해줘.  */
+
 	m_pContext->OMSetRenderTargets(iNumRenderTargets, pMRTs, nullptr == pDSV ? m_pDSV : pDSV);
 
 	return S_OK;

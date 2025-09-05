@@ -2,8 +2,6 @@
 
 #include "VIBuffer.h"
 
-/* 같은 모델을 다수 찍어내야하는 클래스들의 부모를 담당하는 클래스 */
-/* 그려지고 있는 각각의 로컬 상태변환을 담당(행렬)하는 정점들을 가지고 있는 정점버퍼하나를 추가적으로 보유한다. */
 
 BEGIN(Engine)
 
@@ -14,11 +12,11 @@ public:
 	{
 		_float2		vScale{};
 		_float2		vSpeed{};
-		_float2		vLifeTime{}; /* 각 입자의 렌더링시간. */
-		_float3		vPivot{}; /* 움직임을 가져가기위한 기준 점?! */
-		_float3		vCenter{}; /* 생성위치의 중점. */
+		_float2		vLifeTime{}; 
+		_float3		vPivot{}; 
+		_float3		vCenter{}; 
 		_float3		vRange{};
-		_bool		isLoop{}; /*이 이펙트 전체의 재생관련. 루프가 트루라면 각 입자의 재생시간(lifetime)이 끝났을 때, 각 입자가. 다시 재 시작할 수 있도록 하자.  */
+		_bool		isLoop{}; 
 		_uint		iNumInstance{};
 	}INSTANCE_DESC;
 
@@ -38,7 +36,6 @@ public:
 	virtual void Update_Drop(_float fTimeDelta);
 
 protected:
-	/* 추가적 정점(행렬)을 가진다. */
 	ID3D11Buffer* m_pVBInstance = { nullptr };
 	_uint						m_iNumInstance = {};
 	_uint						m_iInstanceVertexStride = {};

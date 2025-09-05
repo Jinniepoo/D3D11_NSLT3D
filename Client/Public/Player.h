@@ -44,8 +44,6 @@ public:
 
 public:
 	_uint   Get_PlayerState() { return m_iState; }
-//	static _int	Get_PlayerLife() { return m_iPlayerLife; }
-//	void	Increase_PlayerLife() { m_iPlayerLife++; }
 
 private:
 	void	Player_KeyInput(_float fTimeDelta);
@@ -72,7 +70,6 @@ private:
 	_float					m_fJumpPower = 1.8f;
 	_float					m_fGravity = 9.8f;
 	_float					m_fTime = 0.f;
-	//static _int				m_iPlayerLife;
 
 	_float3					m_vPlayerPos = {};
 

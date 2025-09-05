@@ -30,7 +30,6 @@ private:
 	_uint				m_iMaterialIndex = {};
 	_uint				m_iNumBones = {};
 
-	/* 모델 전체의 뼈들 중, 이 메시에 영향을 주는 뼈의 인덱스를 저장했다. */
 	vector<_uint>		m_Bones;
 	vector<_float4x4>	m_OffsetMatrices;
 

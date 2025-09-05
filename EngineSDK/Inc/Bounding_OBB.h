@@ -10,7 +10,7 @@ public:
 	typedef struct : public CBounding::BOUNDING_DESC
 	{
 		_float3		vExtents;
-		_float3		vRotation; /* x축기준회전, y축기준회전, z축기준회전 */
+		_float3		vRotation;
 	}BOUNDING_OBB_DESC;
 private:
 	CBounding_OBB(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

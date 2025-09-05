@@ -10,7 +10,6 @@ CFrustum::CFrustum()
 
 HRESULT CFrustum::Initialize()
 {
-	/* 투영스페이스 상의 여덟개 점의 정보를 채워주자. */
 	m_vPoints[0] = _float3(-1.f, 1.f, 0.f);
 	m_vPoints[1] = _float3(1.f, 1.f, 0.f);
 	m_vPoints[2] = _float3(1.f, -1.f, 0.f);
@@ -26,7 +25,6 @@ HRESULT CFrustum::Initialize()
 
 void CFrustum::Update()
 {
-	/* 투영공간상에 구해놓은 여덟개 점을 월드까지 다 치환해놓자. */
 	_vector			vPoints[8];
 
 	for (size_t i = 0; i < 8; i++)
@@ -37,7 +35,6 @@ void CFrustum::Update()
 		XMStoreFloat3(&m_vWorldPoints[i], vPoints[i]);
 	}
 
-	/* 월드까지 변환해놓은 점 여덟개로 평면 여섯개를 만든다. */
 	Make_Planes(m_vWorldPoints, m_vWorldPlanes);
 }
 
@@ -57,7 +54,6 @@ void CFrustum::Transform_ToLocalSpace(_fmatrix WorldMatrix)
 
 _bool CFrustum::isIn_WorldSpace(_fvector vWorldPos, _float fRange)
 {
-	/* 여섯개 평며을 모두 순회하면서 한번이라도 평면의 바깥에 있다면. 절두체 안에 없는거다. */
 	for (size_t i = 0; i < 6; i++)
 	{
 		/*

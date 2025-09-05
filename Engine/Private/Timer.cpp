@@ -11,12 +11,10 @@ CTimer::CTimer()
 
 HRESULT CTimer::Initialize()
 {
-	//QueryPerformanceCounter : ¸ÞÀÎº¸µå°¡ Áö´Ñ °íÇØ»óµµ Å¸ÀÌ¸ÓÀÇ ´©Àû °ªÀ» ¾ò¾î¿À´Â ÇÔ¼ö
-
-	QueryPerformanceCounter(&m_CurTime);		// 1000
-	QueryPerformanceCounter(&m_OldTime);		// 1024
-	QueryPerformanceCounter(&m_OriginTime);		// 1030
-	// QueryPerformanceFrequency : °íÇØ»óµµ Å¸ÀÌ¸ÓÀÇ ÁÖÆÄ¼ö¸¦ ¾ò¾î¿À´Â ÇÔ¼ö, ¿©±â¼­ ÁÖÆÄ¼ö´Â cpuÀÇ ÃÊ´ç Å¬·°¼ö¸¦ ÀÇ¹Ì
+	//QueryPerformanceCounter : ë©”ì¸ë³´ë“œê°€ ì§€ë‹Œ ê³ í•´ìƒë„ íƒ€ì´ë¨¸ì˜ ëˆ„ì  ê°’ì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜
+	QueryPerformanceCounter(&m_CurTime);		
+	QueryPerformanceCounter(&m_OldTime);		
+	QueryPerformanceCounter(&m_OriginTime);		
 	QueryPerformanceFrequency(&m_CpuTick);
 
 	return S_OK;
@@ -24,7 +22,7 @@ HRESULT CTimer::Initialize()
 
 void CTimer::Update()
 {
-	QueryPerformanceCounter(&m_CurTime);	// 1100
+	QueryPerformanceCounter(&m_CurTime);	
 	
 	if (m_CurTime.QuadPart - m_OriginTime.QuadPart > m_CpuTick.QuadPart)
 	{
@@ -54,14 +52,3 @@ CTimer * CTimer::Create()
 void CTimer::Free()
 {
 }
-
-
-
-
-
-
-
-
-
-
-

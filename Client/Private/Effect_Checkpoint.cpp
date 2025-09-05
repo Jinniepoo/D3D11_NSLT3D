@@ -37,7 +37,6 @@ HRESULT CEffect_Checkpoint::Initialize(void* pArg)
 		return E_FAIL;
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_CPEffectDesc.vPos);
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(_float(rand() % 10), 2.0f, _float(rand() % 10), 1.f));
 	m_pTransformCom->Set_Scale(_float3(40.f, 40.f, 40.f));
 
 	return S_OK;

@@ -2,11 +2,6 @@
 
 #include "Base.h"
 
-/* assimp에서 뼈를 표현하는 타입 : 3가지 .*/
-/* aiNode, aiBone, aiNodeAnim */
-
-/* aiNode : 뼈의 상속관계를 표현할 뿐만 아니라 뼈의 상태행렬을 표현한다. */
-
 BEGIN(Engine)
 
 class CBone final : public CBase
@@ -39,8 +34,8 @@ public:
 
 private:
 	_char				m_szName[MAX_PATH] = {};
-	_float4x4			m_TransformationMatrix; /* 내 뼈만의 상태를 부모 기준으로 표현한 행렬. */
-	_float4x4			m_CombinedTransformationMatrix; /* 내 뼈행렬 * 부모 뼈행렬 */	
+	_float4x4			m_TransformationMatrix;
+	_float4x4			m_CombinedTransformationMatrix; 
 	_int				m_iParentBoneIndex = { -1 };
 
 public:

@@ -112,7 +112,6 @@ HRESULT CBody_Player::Render_LightDepth()
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_WorldMatrix", &m_WorldMatrix)))
 		return E_FAIL;
 
-	/* 광원기준으로 표현된 뷰, 투영행렬이다. (카메라기준x) */
 	_float4x4		LightViewMatrix, LightProjMatrix;
 
 	XMStoreFloat4x4(&LightViewMatrix, XMMatrixLookAtLH(XMVectorSet(-10.f, 30.f, -10.f, 1.f), XMVectorSet(0.f, 0.f, 0.f, 1.f), XMVectorSet(0.f, 1.f, 0.f, 0.f)));
@@ -189,7 +188,6 @@ HRESULT CBody_Player::Ready_Components()
 
 HRESULT CBody_Player::Bind_ShaderResources()
 {
-	/* 부모의 행렬을 완전히 무시한 상황. */
 	//if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
 	//	return E_FAIL;
 

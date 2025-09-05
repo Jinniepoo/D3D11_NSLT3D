@@ -29,9 +29,6 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Layer_UI(L"Layer_UI")))
-	//	return E_FAIL;
-
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 
@@ -57,9 +54,6 @@ HRESULT CLevel_Boss::Initialize()
 	m_pPlayer = (CPlayer*)pPlayer->front();
 	Safe_AddRef(m_pPlayer);
 
-	//m_pCoin = dynamic_cast<CUI_Coins*>(GET_LIST(LEVEL_STATIC, L"Layer_UI_Coins")->front());
-	//Safe_AddRef(m_pCoin);
-
 	return S_OK;
 }
 
@@ -78,10 +72,7 @@ void CLevel_Boss::Tick(_float fTimeDelta)
 HRESULT CLevel_Boss::Render()
 {
 	SetWindowText(g_hWnd, L"New Super Lucky's Tale: Boss Stage");
-
-	//m_pGameInstance->Render_FontOutlined(L"Font_Default", to_wstring(m_pPlayer->Get_PlayerLife()), _float2(110.f, 55.f), XMVectorSet(0.f, 0.f, 1.f, 1.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
-	//m_pGameInstance->Render_FontOutlined(L"Font_Default", L"x " + to_wstring(m_pCoin->Coin_Gained()), _float2(117.f, 115.f), XMVectorSet(0.f, 0.f, 1.f, 1.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
-
+	
 	if (m_bDebug)
 		Render_PlayerState();
 
@@ -150,7 +141,6 @@ HRESULT CLevel_Boss::Ready_Layer_Models(const wstring& strLayerTag)
 {
 	_ulong dwByte = { 0 };
 	m_hModelFile = CreateFile(
-		//L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/SkyCastle_Updated.dat",
 		L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/CompletedTest.dat",
 		GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
@@ -199,8 +189,6 @@ HRESULT CLevel_Boss::Ready_Layer_Models(const wstring& strLayerTag)
 	}
 
 	CloseHandle(m_hModelFile);
-
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
 
 	for (auto& pModelDesc : m_ModelDesc)
 	{
@@ -251,7 +239,6 @@ HRESULT CLevel_Boss::Ready_Layer_Collectibles(const wstring& strLayerTag)
 {
 	_ulong dwByte = { 0 };
 	m_hModelFile = CreateFile(
-		//L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Test.dat",
 		L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Collectibles11.dat",
 		GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
@@ -302,8 +289,6 @@ HRESULT CLevel_Boss::Ready_Layer_Collectibles(const wstring& strLayerTag)
 	}
 
 	CloseHandle(m_hModelFile);
-
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
 
 	for (auto& pModelDesc : m_CltbDesc)
 	{
@@ -424,9 +409,6 @@ HRESULT CLevel_Boss::Ready_Layer_BackGround(const wstring& strLayerTag)
 
 HRESULT CLevel_Boss::Ready_Layer_Effect(const wstring& strLayerTag)   
 {
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, TEXT("Prototype_GameObject_Particle_Log"))))
-	//	return E_FAIL;
-
 	return S_OK;
 }
 
@@ -524,13 +506,6 @@ HRESULT CLevel_Boss::Ready_Layer_Monster(const wstring& strLayerTag)
 
 	if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, TEXT("Prototype_GameObject_Monster"), &MonsterDesc1)))
 		return E_FAIL;
-
-	/*CMonster::MONSTER_DESC MonsterDesc2;
-	MonsterDesc.vMonsterPos = { 40.5f, 10.4f, 92.1f, 1.f };
-	MonsterDesc.iCellIndex = 94;
-
-	if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, TEXT("Prototype_GameObject_Monster"), &MonsterDesc2)))
-		return E_FAIL;*/
 
 	return S_OK;
 }

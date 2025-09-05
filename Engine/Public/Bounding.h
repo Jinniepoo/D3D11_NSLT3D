@@ -2,8 +2,6 @@
 
 #include "Collider.h"
 
-/* Sphere, AABB, oBB의 부모가 되는 클래스다.  */
-
 BEGIN(Engine)
 
 class CBounding abstract : public CBase

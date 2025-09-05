@@ -2,9 +2,6 @@
 
 #include "Component.h"
 
-/* 셰이더에 텍스쳐의 정보를 던져서 셰이더내에서 이 텍스쳐 픽셀의 색을 픽셀에 입히는 용도로 사용하기위한 테긋쳐 집합. */
-/* 픽셀의 색을 입히는 용도로 셰이더던지고 쌤플링해온다. */
-
 BEGIN(Engine)
 
 class ENGINE_DLL CTexture final : public CComponent

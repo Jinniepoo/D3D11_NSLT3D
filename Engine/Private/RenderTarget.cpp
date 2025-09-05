@@ -80,11 +80,9 @@ HRESULT CRenderTarget::Ready_Debug(_float fX, _float fY, _float fSizeX, _float f
 
 HRESULT CRenderTarget::Render_Debug(CShader * pShader, CVIBuffer_Rect * pVIBuffer)
 {
-	/* 월드행렬을 따로 셋팅하는 이유 : 렌더타겟을 확인해뵉위한 디버긍요 사각형 버퍼를 각기 다른 위치에 다른 사이즈로 직교투영햐아여 그려주기위해ㅓㅅ. */
 	if (FAILED(pShader->Bind_Matrix("g_WorldMatrix", &m_WorldMatrix)))
 		return E_FAIL;	
 
-	/* 렌더타겟에 뭐가 그려지는 지를 확인하기위해서 레[ㄴ터타겟텍스쳐를 쉐이더로 던진다. */
 	if (FAILED(pShader->Bind_SRV("g_Texture", m_pSRV)))
 		return E_FAIL;
 

@@ -29,20 +29,8 @@ HRESULT CLevel_Puzzle::Initialize()
 	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Layer_UI(L"Layer_UI")))
-	//	return E_FAIL;
-
-	//if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
-	//	return E_FAIL;
-
 	if (FAILED(Ready_LandObjects()))
 		return E_FAIL;
-
-	//if (FAILED(Ready_MapObjects(L"Layer_MapObjects")))
-	//	return E_FAIL;
-
-	//if (FAILED(Ready_Animated(L"Layer_Animated")))
-	//	return E_FAIL;
 
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_CameraPlayer"))))
 		return E_FAIL;
@@ -83,16 +71,12 @@ void CLevel_Puzzle::Tick(_float fTimeDelta)
 			m_bDebug = true;
 	}
 
-	// Define a constant for the time each element should appear
-	const float fElementDuration = 1.0f; // Each element appears for 1 second
+	const float fElementDuration = 1.0f; /
 
-	// Increment the timer
 	m_fElapsedTime += fTimeDelta;
 
 	if (KEY_HOLD(DIK_Y))
 	{
-		/*if (m_bShow)
-		{*/
 		auto AddUIElement = [this](int textureIdx, const std::wstring& layer, const std::wstring& prototype) {
 			CUI_LuckyComplete::UI_DESC UIDesc;
 			UIDesc.iTextureIdx = textureIdx;
@@ -236,7 +220,6 @@ HRESULT CLevel_Puzzle::Ready_Layer_Models(const wstring& strLayerTag)
 {
 	_ulong dwByte = { 0 };
 	m_hModelFile = CreateFile(
-		//L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/SkyCastle_Updated.dat",
 		L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/PuzzleMap.dat",
 		GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
@@ -285,8 +268,6 @@ HRESULT CLevel_Puzzle::Ready_Layer_Models(const wstring& strLayerTag)
 	}
 
 	CloseHandle(m_hModelFile);
-
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
 
 	for (auto& pModelDesc : m_ModelDesc)
 	{
@@ -337,7 +318,6 @@ HRESULT CLevel_Puzzle::Ready_Layer_Collectibles(const wstring& strLayerTag)
 {
 	_ulong dwByte = { 0 };
 	m_hModelFile = CreateFile(
-		//L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Test.dat",
 		L"C:/NSLT_3D/Client/Bin/Resources/SaveFiles/SkyCastle/Puzzle_Collectibles1.dat",
 		GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
@@ -388,8 +368,6 @@ HRESULT CLevel_Puzzle::Ready_Layer_Collectibles(const wstring& strLayerTag)
 	}
 
 	CloseHandle(m_hModelFile);
-
-	//m_pGameInstance->Clear_Layer(LEVEL_GAMEPLAY, L"Layer_ModelObjects");
 
 	for (auto& pModelDesc : m_CltbDesc)
 	{
@@ -514,9 +492,6 @@ HRESULT CLevel_Puzzle::Ready_Layer_BackGround(const wstring& strLayerTag)
 
 HRESULT CLevel_Puzzle::Ready_Layer_Effect(const wstring& strLayerTag)
 {
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_GAMEPLAY, strLayerTag, TEXT("Prototype_GameObject_Particle_Log"))))
-	//	return E_FAIL;
-
 	return S_OK;
 }
 
@@ -544,19 +519,6 @@ HRESULT CLevel_Puzzle::Ready_Animated(const wstring& strLayerTag)
 	BossDesc.vPos = { 50.f, 17.98f, 50.f, 1.f };
 	if (FAILED(m_pGameInstance->Add_Clone(LEVEL_PUZZLE, strLayerTag, L"Prototype_GameObject_Anim_Boss", &BossDesc)))
 		return E_FAIL;
-
-	///* Checkpoint */
-	//CCheckpoint::CHECK_DESC CheckDesc;
-	//CheckDesc.vCheckPos = { 57.5f, 11.80f, 104.5f, 1.f };
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_PUZZLE, strLayerTag, L"Prototype_GameObject_Anim_Checkpoint", &CheckDesc)))
-	//	return E_FAIL;
-
-	///* FoxHole */
-	//CAnim_Foxhole::HOLE_DESC HoleDesc;
-	//HoleDesc.vPos = { 50.12f, 17.98f, 126.56f, 1.f };
-	//if (FAILED(m_pGameInstance->Add_Clone(LEVEL_PUZZLE, strLayerTag, L"Prototype_GameObject_Anim_FoxHole", &HoleDesc)))
-	//	return E_FAIL;
-
 
 	return S_OK;
 }

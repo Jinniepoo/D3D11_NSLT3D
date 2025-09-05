@@ -2,15 +2,11 @@
 
 #include "Base.h"
 
-/* 화면에 그려져야할 객체들을 그리는 순서대로 모아서 저장한다. */
-/* 저장하고 있는 객체들의 Render함수를 호출한다. */
-
 BEGIN(Engine)
 
 class CRenderer final : public CBase
 {
 public:
-	/* 그리는 순서대로 열거체를 정의했다. */
 	enum RENDERGROUP { RENDER_PRIORITY, RENDER_SHADOW, RENDER_NONBLEND, RENDER_NONBLEND_B, RENDER_NONLIGHT, RENDER_BLEND, RENDER_UI, RENDER_END };
 private:
 	CRenderer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
@@ -39,13 +35,11 @@ private:
 	class CGameInstance*	m_pGameInstance = { nullptr };
 	class CVIBuffer_Rect*	m_pVIBuffer = { nullptr };
 
-	/* 렌더타겟 디버깅용 패스 (0), 빛연산을 위한 패스 (1) */
 	class CShader*			m_pShader = { nullptr };
 
 	ID3D11DepthStencilView* m_pLightDepthDSV = { nullptr };
 
 private:
-	/* m_WorldMatrix : 화면을 꽉 채우는 직교투영이 빈번히 활용되기때문에 저장해둘거야 .*/
 	_float4x4					m_WorldMatrix{}, m_ViewMatrix{}, m_ProjMatrix{};
 
 #ifdef _DEBUG

@@ -3,9 +3,6 @@
 #include "Component.h"
 #include "Animation.h"
 
-/* 모델러분들이 작성해놓은 정점의 정보와 인덱스의 정보를 로드하여 내가 사용하기좋도록 정리한다. */
-/* Vertex -> Polygon -> Mesh -> Model */
-
 BEGIN(Engine)
 
 class ENGINE_DLL CModel final : public CComponent
@@ -50,10 +47,7 @@ public:
 	HRESULT Bind_BoneMatrices(class CShader* pShader, const _char* pConstantName, _uint iMeshIndex);
 
 private:
-	/* 디자이너가 제공해준 파일의 정보를 읽어서 aiScene에 저장해주는 역활을 수행한다. */
 	Assimp::Importer			m_Importer = {};
-
-	/* 모델에 대한 모든 정보를 다 들고 있는 객체다. */
 	const aiScene*				m_pAIScene = { nullptr };
 
 private:
@@ -69,7 +63,6 @@ private:
 	vector<MATERIAL_MESH>			m_Materials;
 
 private:	
-	/* 이 모델 전체의 뼈들을 모아놓은 벡터 컨테이너. */
 	vector<class CBone*>			m_Bones;
 
 private:
@@ -77,9 +70,6 @@ private:
 	_uint							m_iCurrentAnimIndex = {};
 	_uint							m_iNumAnimations = { 0 };
 	vector<class CAnimation*>		m_Animations;
-
-	//vector<VTXMESH*>				m_Vertices[메시의갯수];
-	//vector<_uint>					m_Indices[메시의갯수];
 
 private:
 	HRESULT Ready_Meshes();

@@ -49,7 +49,6 @@ HRESULT CCamera::Initialize(void* pArg)
 
 void CCamera::PriorityTick(_float fTimeDelta)
 {
-	/* 카메라 월드행렬의 역행렬을 뷰행렬로서 파이파이라인에 저장해주낟. */
 	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_VIEW, XMMatrixInverse(nullptr, m_pTransformCom->Get_WorldMatrix()));
 	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_PROJ, XMMatrixPerspectiveFovLH(m_fFovy, m_fAspect, m_fNear, m_fFar));
 }

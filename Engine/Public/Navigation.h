@@ -2,9 +2,6 @@
 
 #include "Component.h"
 
-/* 현재 내 지형을 타고 다닐 수 있도록 삼각형들을 가지고 있는다. */
-/* 이 네비게이션을 이용하는 객체가 어떤 셀안에 잇ㄴ느지에 대한 삼각형 인덱스를 저장하고 있는다. */
-
 BEGIN(Engine)
 
 class ENGINE_DLL CNavigation final : public CComponent

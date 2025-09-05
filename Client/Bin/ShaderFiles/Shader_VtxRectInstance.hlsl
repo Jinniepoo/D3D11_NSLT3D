@@ -6,11 +6,9 @@ texture2D g_Texture;
 
 struct VS_IN
 {
-	/* 그리기용 정점데이터 m_pVB */
     float3 vPosition : POSITION;
     float2 vTexcoord : TEXCOORD0;
 
-	/* 변환용 정점데이터 m_pVBInstance */
     float4 vRight : TEXCOORD1;
     float4 vUp : TEXCOORD2;
     float4 vLook : TEXCOORD3;
@@ -36,7 +34,6 @@ VS_OUT VS_MAIN(VS_IN In)
 
     matrix TransformMatrix = float4x4(In.vRight, In.vUp, In.vLook, In.vTranslation);
 
-	/* 그리기용 정점의 데이터를 로컬스페이스 내에서 TransformMatrix상태로 변환한다. */
     vector vPosition = mul(float4(In.vPosition, 1.f), TransformMatrix);
 
     Out.vPosition = mul(vPosition, matWVP);
@@ -59,7 +56,6 @@ struct PS_OUT
     float4 vColor : SV_TARGET0;
 };
 
-/* 픽셀의 색을 결정하낟. */
 PS_OUT PS_MAIN(PS_IN In)
 {
     PS_OUT Out = (PS_OUT) 0;

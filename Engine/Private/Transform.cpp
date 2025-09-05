@@ -65,7 +65,6 @@ void CTransform::Go_Straight(_float fTimeDelta, CNavigation* pNavigation)
 
 	vPosition += XMVector3Normalize(vLook) * m_fSpeedPerSec * fTimeDelta;
 
-	/* isMove() : 이대로 움직여도 되냐? */
 	if (nullptr == pNavigation || true == pNavigation->isMove(vPosition))
 		Set_State(STATE_POSITION, vPosition);
 }
@@ -123,13 +122,11 @@ void CTransform::Go_Low(_float fTimeDelta)
 	Set_State(STATE_POSITION, vPosition);
 }
 
-/* 항상 항등회전(회전이 없는 상태)기준 지정한 각도만큼 회전한다. */
 /* Radian = XMConvertToRadians(Degree) */
 void CTransform::Rotation(_fvector vAxis, _float fRadian)
 {
 	_float3		vScaled = Get_Scaled();
 
-	/* 회전은 항등상태로!, 스케일은 기존 상태로. */
 	_vector		vRight = XMVectorSet(1.f, 0.f, 0.f, 0.f) * vScaled.x;
 	_vector		vUp = XMVectorSet(0.f, 1.f, 0.f, 0.f) * vScaled.y;
 	_vector		vLook = XMVectorSet(0.f, 0.f, 1.f, 0.f) * vScaled.z;
@@ -144,7 +141,6 @@ void CTransform::Rotation(_fvector vAxis, _float fRadian)
 
 void CTransform::Turn(_fvector vAxis, _float fTimeDelta)
 {
-	/* 현재 회전 상태를 얻어온다. */
 	_vector		vRight = Get_State(STATE_RIGHT);
 	_vector		vUp = Get_State(STATE_UP);
 	_vector		vLook = Get_State(STATE_LOOK);

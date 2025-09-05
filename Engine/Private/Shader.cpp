@@ -25,11 +25,6 @@ D3D11_INPUT_ELEMENT_DESC		Elements[] = {
 };
 */
 
-/* 1. 경로로 넣어준 셰이덜르 빌드하여 객체화한다. */
-/* 2. 경로로 넣어준 셰이더의 모든 패스가 내가 인자로 전달해준 정점을 받아줄 수 있냐? */
-/* 2-1. 받아줄 수 있다라면 InputLayout객체를 만들어줘. */
-/* 3. 추후 Inputlayout이라는 객체는 이 셰이더롤 통해서 렌더링할때마다 장치에 바인딩하는 용도로 쓸꺼닫. */
-
 HRESULT CShader::Initialize_Prototype(const _tchar* pShaderFilePath, const D3D11_INPUT_ELEMENT_DESC* pElements, _uint iNumElements)
 {
 	_uint			iHlslFlag = {};
@@ -87,7 +82,6 @@ HRESULT CShader::Begin(_uint iPassIndex)
 	if (nullptr == pPass)
 		return E_FAIL;
 
-	/* 이 Apply함수를 호출하기 전에 만드시 셰이더에 전달해야할 내가 사용해야할 전역변수를 전달해야한다. */
 	pPass->Apply(0, m_pContext);
 
 	return S_OK;
@@ -95,7 +89,6 @@ HRESULT CShader::Begin(_uint iPassIndex)
 
 HRESULT CShader::Bind_RawValue(const _char* pConstantName, const void* pData, _uint iSize)
 {
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 얻어온다. */
 	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;
@@ -105,12 +98,10 @@ HRESULT CShader::Bind_RawValue(const _char* pConstantName, const void* pData, _u
 
 HRESULT CShader::Bind_Matrix(const _char* pConstantName, const _float4x4* pMatrix)
 {
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 얻어온다. */
 	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;
 
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 Matrix타입으로 가져ㅐ온다. */
 	ID3DX11EffectMatrixVariable* pMatrixVariable = pVariable->AsMatrix();
 	if (nullptr == pMatrixVariable)
 		return E_FAIL;
@@ -121,12 +112,10 @@ HRESULT CShader::Bind_Matrix(const _char* pConstantName, const _float4x4* pMatri
 
 HRESULT CShader::Bind_Matrices(const _char* pConstantName, const _float4x4* pMatrices, _uint iNumMatrices)
 {
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 얻어온다. */
 	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;
 
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 Matrix타입으로 가져ㅐ온다. */
 	ID3DX11EffectMatrixVariable* pMatrixVariable = pVariable->AsMatrix();
 	if (nullptr == pMatrixVariable)
 		return E_FAIL;
@@ -136,7 +125,6 @@ HRESULT CShader::Bind_Matrices(const _char* pConstantName, const _float4x4* pMat
 
 HRESULT CShader::Bind_SRV(const _char* pConstantName, ID3D11ShaderResourceView* pSRV)
 {
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 얻어온다. */
 	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;
@@ -148,10 +136,8 @@ HRESULT CShader::Bind_SRV(const _char* pConstantName, ID3D11ShaderResourceView* 
 	return pSRVariable->SetResource(pSRV);
 }
 
-/*  ID3D11ShaderResourceView*를 배열로 저장하고 그 배열의 주소를 내놔. */
 HRESULT CShader::Bind_SRVs(const _char* pConstantName, ID3D11ShaderResourceView** ppSRV, _uint iNumTextures)
 {
-	/* pConstantName이름응ㄹ 가진 전역변수의 Com객체를 얻어온다. */
 	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;

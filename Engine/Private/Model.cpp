@@ -56,14 +56,11 @@ const _float4x4* CModel::Get_BoneMatrixPtr(const _char* pBoneName) const
 
 HRESULT CModel::Initialize_Prototype(TYPE eType, const _char* pModelFilePath, _fmatrix TransformMatrix)
 {
-	/* aiProcess_PreTransformVertices : 내 모델은 여러개의 메시(칼, 몸, 가방, 모닝스타, 그림자)로 구분되어있어. */
-	/* 이 각각의 메시를 배치되야할 상태대로 다 미리 셋팅하여 로드한다. */
 	_uint			iFlag = aiProcess_ConvertToLeftHanded | aiProcessPreset_TargetRealtime_Fast;
 
 	if (eType == TYPE_NONANIM)
 		iFlag |= aiProcess_PreTransformVertices;
 
-	/* 모든 모델의 정보를 다 읽어서 aiScene안에 저장해둔 것이다. */
 	m_pAIScene = m_Importer.ReadFile(pModelFilePath, iFlag);
 	if (nullptr == m_pAIScene)
 		return E_FAIL;
@@ -72,16 +69,12 @@ HRESULT CModel::Initialize_Prototype(TYPE eType, const _char* pModelFilePath, _f
 
 	XMStoreFloat4x4(&m_TransformMatrix, TransformMatrix);
 
-	/* aiScene에 있는 정보를 내가 활용하기 좋도록 수정 정리 보관하는 작업을 수행하자. */
 	if (FAILED(Ready_Bones(m_pAIScene->mRootNode, -1)))
 		return E_FAIL;
-
-	/* 이 모델을 구성하는 각각의 메시를 로드하자. */
-	/* 애님 모델일 경우, 현재 메시가 사용하는 뼈의 인덱스를 메시에 보관한다. */
+	
 	if (FAILED(Ready_Meshes()))
 		return E_FAIL;
-
-	/* 빛 정보 <-> 정점의 노말, (Material) 픽셀당 무슨 색을 반사해야할지?! 픽셀당 환경광원을 어떻게 설정할지? 픽셀당 스펙큘러 연산을 어떻게해야할지?! */
+	
 	if (FAILED(Ready_Materials(pModelFilePath)))
 		return E_FAIL;
 
@@ -100,19 +93,6 @@ HRESULT CModel::Initialize(void* pArg)
 
 HRESULT CModel::Render(_uint iMeshIndex)
 {
-	/* old : 모든 메시를 순회하면서 각 메시의 렌더함수를 호출한다. */
-	/* Curr : 메시의 순회를 클라이언트에서 수행을 하고 지정한 메시에 대해서만 렌더함수를 호출한다.  */
-	/* 어떤 머테리얼(Diffuse Ambient)을 어떤 쉐이더에 어떤 변수에 전달할 건지를 결정을 해야하는 작업을 수행해야했다. */
-	/* 어떤 머테리얼인지가 메시마다 다르다. CMesh::m_iMaterialIndex */
-
-	//for (size_t i = 0; i < m_iNumMeshes; i++)
-	//{
-	//	/* 쉐이더에 텍스쳐를 던지느 ㄴ작업을 클라이언트에서 처리하기위해 위의 루프자체를 클라로 옮긴것이다. */
-	//	m_Materials[m_Meshes[i]->Get_MaterialIndex()].pTextures[aiTextureType_DIFFUSE]->Bind_ShaderResource();
-
-	//	m_Meshes[i]->Render();
-	//}
-
 	m_Meshes[iMeshIndex]->Render();
 
 	return S_OK;
@@ -120,11 +100,8 @@ HRESULT CModel::Render(_uint iMeshIndex)
 
 void CModel::Play_Animation(_float fTimeDelta)
 {
-	/* 1. 이 애니메이션이 사용하는 뼈들을 현재 시간에 맞는 애니메이션의 상태대로 뼈의 상태(TransformationMatrix)를 갱신해준다. */
 	m_Animations[m_iCurrentAnimIndex]->Update_TransformationMatrix(fTimeDelta, m_Bones, m_isLoop);
 
-	/* 2. 모든 뼈를 다시 순회하면서 CombinedTransformationMatrix를 갱신해주낟. */
-	/*CombinedTransformationMatrix = 나의 TransformationMatrix * 부모의 CombinedTransformationMatrix */
 	for (auto& pBone : m_Bones)
 	{
 		pBone->Update_CombinedTransformationMatrix(m_Bones, XMLoadFloat4x4(&m_TransformMatrix));
@@ -144,10 +121,8 @@ HRESULT CModel::Bind_Material(CShader* pShader, const _char* pConstantName, _uin
 
 HRESULT CModel::Bind_BoneMatrices(CShader* pShader, const _char* pConstantName, _uint iMeshIndex)
 {
-	/* 쉐이더에 던져야 할 행렬 배열정보. */
 	_float4x4	BoneMatrices[512];
 
-	/* 행렬배열은 메시에게 영향을 주는 뼈들의 행렬만 가져야하므로 메시에게 저장좀해줘! */
 	m_Meshes[iMeshIndex]->SetUp_BoneMatrices(BoneMatrices, m_Bones);
 
 	return pShader->Bind_Matrices(pConstantName, BoneMatrices, 512);
@@ -155,7 +130,6 @@ HRESULT CModel::Bind_BoneMatrices(CShader* pShader, const _char* pConstantName, 
 
 HRESULT CModel::Ready_Meshes()
 {
-	/* 메시의 갯수를 저장하낟. */
 	m_iNumMeshes = m_pAIScene->mNumMeshes;
 
 	for (size_t i = 0; i < m_iNumMeshes; i++)
@@ -172,8 +146,6 @@ HRESULT CModel::Ready_Meshes()
 
 HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 {
-	/* 모델에는 여러개의 머테리얼이 존재하낟. */
-	/* 각 머테리얼마다 다양한 재질(Diffuse, Ambient,Specular...)을 텍스쳐로 표현한다. */
 	m_iNumMaterials = m_pAIScene->mNumMaterials;
 
 	for (size_t i = 0; i < m_iNumMaterials; i++)
@@ -184,19 +156,15 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 
 		for (size_t j = 1; j < AI_TEXTURE_TYPE_MAX; j++)
 		{
-			/* 얻어온 경로에서 신용할 수 있는 건 파일의 이름과 확장자. */
 			aiString		strTexturePath;
 
-			/* 내가 지정한 텍스쳐의 경로를 얻어주낟.*/
 			if (FAILED(pAIMaterial->GetTexture(aiTextureType(j), 0, &strTexturePath)))
 				continue;
 
 			_char		szFullPath[MAX_PATH] = {};
-			/* 모델파일경로로부터 뜯어온 문자열. */
 			_char		szDrive[MAX_PATH] = {};
 			_char		szDir[MAX_PATH] = {};
 
-			/* 모델파일(aiScene)로부터 뜯어온 문자열. */
 			_char		szFileName[MAX_PATH] = {};
 			_char		szExt[MAX_PATH] = {};
 

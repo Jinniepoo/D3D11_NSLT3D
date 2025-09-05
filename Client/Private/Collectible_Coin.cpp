@@ -253,40 +253,6 @@ HRESULT CCollectible_Coin::Render()
 	return S_OK;
 }
 
-//HRESULT CCollectible_Coin::Render_LightDepth()
-//{
-//	const _float4x4 WorldMatrix = *(m_pTransformCom->Get_WorldFloat4x4());
-//
-//	if (FAILED(m_pShaderCom->Bind_Matrix("g_WorldMatrix", &WorldMatrix)))
-//		return E_FAIL;
-//
-//	_float4x4		LightViewMatrix, LightProjMatrix;
-//
-//	XMStoreFloat4x4(&LightViewMatrix, XMMatrixLookAtLH(XMVectorSet(0.f, 300.f, 40.f, 1.f), XMVectorSet(0.f, 0.f, 0.f, 1.f), XMVectorSet(0.f, 1.f, 0.f, 0.f)));
-//	XMStoreFloat4x4(&LightProjMatrix, XMMatrixPerspectiveFovLH(XMConvertToRadians(90.0f), (_float)g_iWinSizeX / g_iWinSizeY, 0.1f, 3000.f));
-//
-//	if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &LightViewMatrix)))
-//		return E_FAIL;
-//	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &LightProjMatrix)))
-//		return E_FAIL;
-//
-//	_uint	iNumMeshes = m_pModelCom->Get_NumMeshes();
-//
-//	for (_uint i = 0; i < iNumMeshes; i++)
-//	{
-//		if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_DiffuseTexture", (_uint)i, aiTextureType_DIFFUSE)))
-//			return E_FAIL;
-//
-//		m_pShaderCom->Begin(1);
-//
-//		if (FAILED(m_pModelCom->Bind_Buffers(i)))
-//			return E_FAIL;
-//
-//		m_pModelCom->Render((_uint)i);
-//	}
-//	return S_OK;
-//}
-
 HRESULT CCollectible_Coin::Ready_Components()
 {
 	/* For.Com_Shader */

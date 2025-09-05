@@ -18,7 +18,6 @@ public:
 public:
 	virtual void Update_Spread(_float fTimeDelta);
 	virtual void Update_Drop(_float fTimeDelta);
-	// void Update_Fontain(_float fTimeDelta);
 
 private:
 	VTXMATRIX* m_pInstanceVertices = { nullptr };

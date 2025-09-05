@@ -3,10 +3,6 @@
 #include "Client_Defines.h"
 #include "Level.h"
 
-/* 1. 로딩 레벨을 보여주기위한 객체들을 생성하는 작업을 수행한다. */
-/* 2. 자원로딩을 위한 로더객체를 생성해준다. */
-/* Level_Loading생성하는 작업 : 메인스레드 */
-
 BEGIN(Client)
 
 class CLevel_Loading final : public CLevel

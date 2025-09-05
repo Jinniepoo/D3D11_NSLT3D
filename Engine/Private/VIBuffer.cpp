@@ -56,10 +56,6 @@ HRESULT CVIBuffer::Bind_Buffers()
 
 HRESULT CVIBuffer::Render()
 {
-	/* 장치가 알아서 정점의 위치를 변환, 노말로 빛연산, 텍스쿠드로 샘플링하는 작업을 스스로 수행하지않는다. */
-	/* 내 정점이 어떻게 생겼는지를 굳이 전달해줄 필요는 없다. */
-	/* 위 작업응ㄹ 내가 직접 수행행햐나다. == 셰이더를 이용해야한ㄴ다. */
-	/* 검증필요해!! => 내가 그릴려고하는 정점이 내가 이용할려고 하는 셰이더에 입력이 가능한지? */
 	m_pContext->DrawIndexed(m_iNumIndices, 0, 0);
 
 	return S_OK;
@@ -67,9 +63,6 @@ HRESULT CVIBuffer::Render()
 
 HRESULT CVIBuffer::Create_Buffer(ID3D11Buffer** ppOut)
 {
-	/* 1. D3D11_BUFFER_DESC : 버퍼를 생성하기위한 설정 값들(몇바이트할당한건지? 속성은 정, 동적. */
-	/* 2. D3D11_SUBRESOURCE_DATA : 지금 생성한 공간에 어떤 값들을 채워넣을지? */
-	/* 3. Out */
 	m_pDevice->CreateBuffer(&m_BufferDesc, &m_InitialData, ppOut);
 
 	return S_OK;

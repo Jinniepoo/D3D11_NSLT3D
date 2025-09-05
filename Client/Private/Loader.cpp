@@ -269,21 +269,6 @@ HRESULT CLoader::Loading_For_GamePlay_Level()
 		CVIBuffer_Point_Instance::Create(m_pDevice, m_pContext, &InstanceDesc))))
 		return E_FAIL;
 
-	///* For.Prototype_Component_VIBuffer_Particle_Log */
-	//CVIBuffer_Instance::INSTANCE_DESC MeshInstanceDesc{};
-	//MeshInstanceDesc.iNumInstance = 100; // Number of instances
-	//MeshInstanceDesc.vScale = _float2(0.2f, 0.7f); // Scale range
-	//MeshInstanceDesc.vCenter = _float3(0.f, 0.f, 0.f); // Center position
-	//MeshInstanceDesc.vRange = _float3(1.f, 1.f, 1.f); // Range for random position
-	//MeshInstanceDesc.vSpeed = _float2(1.f, 2.f); // Speed range
-	//MeshInstanceDesc.vPivot = _float3(0.f, 0.f, 0.f); // Pivot point for instance spreading
-	//MeshInstanceDesc.vLifeTime = _float2(1.f, 3.f); // Lifetime range
-	//MeshInstanceDesc.isLoop = false; // Loop flag
-
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Log"),
-	//	CVIBuffer_Mesh_Instance::Create(m_pDevice, m_pContext, &MeshInstanceDesc))))
-	//	return E_FAIL;
-
 	/* Map Objects */
 
 	/* Prototype_Component_Model_MazeDoor */
@@ -431,11 +416,6 @@ HRESULT CLoader::Loading_For_GamePlay_Level()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxPointInstance"),
 		CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_VtxPointInstance.hlsl"), VTXPOINTINSTANCE::Elements, VTXPOINTINSTANCE::iNumElements))))
 		return E_FAIL;
-
-	///* For.Prototype_Component_Shader_VtxMeshInstance */
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxMeshInstance"),
-	//	CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_VtxMeshInstance.hlsl"), VTXMESHINSTANCE::Elements, VTXMESHINSTANCE::iNumElements))))
-	//	return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("Loading Navigation.."));
 
@@ -599,11 +579,6 @@ HRESULT CLoader::Loading_For_GamePlay_Level()
 		CAnim_Foxhole::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	///* For.Prototype_GameObject_Anim_NPC_Guard */
-	//if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Anim_NPC_Guard"),
-	//	CAnim_Guard::Create(m_pDevice, m_pContext))))
-	//	return E_FAIL;
-
 	/* For.Prototype_GameObject_Anim_BabyGolem */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Anim_BabyGolem"),
 		CAnim_BabyGolem::Create(m_pDevice, m_pContext))))
@@ -703,17 +678,9 @@ HRESULT CLoader::Loading_Puzzle()
 
 	/* Map Objects */
 
-	///* Prototype_Component_Model_MazeDoor */
-	//LocalTransformMatrix = XMMatrixRotationX(XMConvertToRadians(-90.f));
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_PUZZLE, TEXT("Prototype_Component_Model_MazeDoorL"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/Resources/Models/AnimModels/TutorialDoor_L/TutorialDoor.fbx", LocalTransformMatrix))))
-	//	return E_FAIL;
-
-
 	lstrcpy(m_szLoadingText, TEXT("Loading Sounds.."));
 
 	/* BGM */
-	//ADD_SOUND(L"BGM_Puzzle", L"../Bin/Resources/Sounds/Puzzle/BGM_Puzzle.ogg");
 	ADD_SOUND(L"BGM_Puzzle", L"../Bin/Resources/Sounds/Puzzle/BGM_Puzzle1.ogg");
 
 	/* SoundEffects */
