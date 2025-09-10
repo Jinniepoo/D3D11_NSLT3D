@@ -17,6 +17,11 @@
 ## 리소스
 **Turbosquid, Mixamo, Unity Asset Store 등에서 제공하는 무료 에셋과 모델을 활용하여 개발되었습니다**
 
+## Characters
+<p align="center">
+   <img src="GitImages/NSLT_Default.gif" width="900" />
+</p>
+
 ---
 ## 주요 특징
 - **탑다운 3D 컨트롤**: 플레이어 이동 및 마우스 클릭 기반 목표 지정
