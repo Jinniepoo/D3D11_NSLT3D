@@ -53,13 +53,13 @@
    <img src="GitImages/DebugMode.gif" width="900" />
 </p>
 
-- **Renderer Debug Mode**: Diffuse, Normal, Depth, LightDepth, Shade, Blur, Result 뷰 지원
+- **Renderer(Debug Mode)**: Diffuse, Normal, Depth, LightDepth, Shade, Blur, Result 뷰 지원
 
 <p align="center">
    <img src="GitImages/MapTool_DebugCamera.gif" width="900" />
 </p>
    
-- **디버그 카메라(Debug Camera)**: 개발 편의를 위한 자유 시점 카메라 제공
+- **Debug Camera**: 개발 편의를 위한 자유 시점 카메라 제공
 
 <p align="center">
   <img src="GitImages/MapTool_ObjectPosition.gif" width="400" />
@@ -76,7 +76,7 @@
 </p>
 
 - **Navigation 포인트 설정**: AI 및 경로 탐색용 내비게이션 포인트 배치 가능
-   - **삼각형(Cell) 생성**:  
+- **Cell 생성**:  
   - 사용자가 3개의 포인트를 지정하면 하나의 삼각형 셀(Cell) 생성  
   - 삼각형의 정점은 Clockwise(시계방향) 순서로 자동 정렬
 
@@ -119,14 +119,14 @@
 </p>
 
 - **플레이어 추적 AI**: 단순 상태 머신(State Machine) 기반 동작 구현  
-- **상태 전환(State Transition)**: Idle → 추적(Track) → 공격(Attack) → 피격(Reaction) 
+- **상태 전환(State Transition)**: Idle / 추적(Track) / 공격(Attack) / 피격(Damaged) 
 
 ---
 
 ## Rendering / Optimization
 
-- Instancing 기반 렌더링 → 다수 오브젝트 성능 최적화
-- Frustum Culling → 불필요한 드로우콜 제거
+- **Instancing 기반 렌더링** : 다수 오브젝트 성능 최적화
+- **Frustum Culling**: 불필요한 드로우콜 제거
 
 ---
 ## 개발 환경
