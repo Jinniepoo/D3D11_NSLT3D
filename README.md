@@ -25,10 +25,10 @@
 ## Characters
 
 <p align="center">
-   <img src="GitImages/CoinLoot.gif" width="500" />
-   <img src="GitImages/UI_CloverLoot.gif" width="500" />
-   <img src="GitImages/TailAttack_Heart.gif" width="500" />
-   <img src="GitImages/PlayerState_BurrowMode.gif" width="500" />
+   <img src="GitImages/CoinLoot.gif" width="450" />
+   <img src="GitImages/UI_CloverLoot.gif" width="450" />
+   <img src="GitImages/TailAttack_Heart.gif" width="450" />
+   <img src="GitImages/PlayerState_BurrowMode.gif" width="450" />
 </p>
 
 - **수집 및 루트 시스템**: 코인 및 클로버 수집, UI 연동을 통한 직관적 피드백 제공  
@@ -45,8 +45,8 @@
   - Player 2차 공격 시 포물선 공식 기반 넉백 후 몬스터 Dead 처리 (두 번째 애니메이션)
 
 <p align="center">
-   <img src="GitImages/Player_LootGolemHead.gif" width="500" />
-   <img src="GitImages/Player_AttachGolemHead.gif" width="500" />
+   <img src="GitImages/Player_LootGolemHead.gif" width="450" />
+   <img src="GitImages/Player_AttachGolemHead.gif" width="450" />
 </p>
 
 - **퀘스트 메커니즘** : 분리된 GolemHead 수집 후 Player PartObject(Hand)와 연결/해제하는 연출 구현
@@ -60,10 +60,10 @@
 
 <p align="center">
    <img src="GitImages/MapTool_DebugCamera.gif" width="900" />
-   <img src="GitImages/MapTool_ObjectPosition.gif" width="500" />
-   <img src="GitImages/MapTool_ObjectRotation.gif" width="500" />
-   <img src="GitImages/MapTool_ObjectScale.gif" width="500" />
-   <img src="GitImages/MapTool_Collectibles_Delete.gif" width="500" />
+   <img src="GitImages/MapTool_ObjectPosition.gif" width="450" />
+   <img src="GitImages/MapTool_ObjectRotation.gif" width="450" />
+   <img src="GitImages/MapTool_ObjectScale.gif" width="450" />
+   <img src="GitImages/MapTool_Collectibles_Delete.gif" width="450" />
 </p>
 
 - **오브젝트 배치 및 편집 기능**: ImGui를 통한 위치, 회전, 스케일 조절
@@ -100,10 +100,10 @@
 
 ### Gimmick Objects
 <p align="center">
-   <img src="GitImages/Gimmich_SpringMushroom2.gif" width="500" />
-   <img src="GitImages/Gimmick_Bell.gif" width="500" />
-   <img src="GitImages/Gimmick_Checkpoint.gif" width="500" />
-   <img src="GitImages/Gimmick_EntranceGate.gif" width="500" />
+   <img src="GitImages/Gimmich_SpringMushroom2.gif" width="450" />
+   <img src="GitImages/Gimmick_Bell.gif" width="450" />
+   <img src="GitImages/Gimmick_Checkpoint.gif" width="450" />
+   <img src="GitImages/Gimmick_EntranceGate.gif" width="450" />
 </p>
 
 - **점프 패드(Jump Pad)**: 플레이어 콜라이더 충돌 시 스케일 변화 + Bouncing 효과 적용  
