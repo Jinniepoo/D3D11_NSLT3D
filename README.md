@@ -8,113 +8,131 @@
 
 ---
 ## 프로젝트 소개
-**New Super Lucky's Tale**은 DirectX11 기반으로 제작한 3인칭 Top-Down RPG 프로젝트입니다. Undervein 은 “땅속 깊은 곳(Under)” + “혈관/맥(Vein)”의 의미를 담고 있으며,
-어두운 지하 던전 속을 탐험하고 몬스터와 전투를 벌이는 세계관을 상징적으로 담아내며 표현했습니다.
+본 프로젝트는 DirectX11 기반 자체 엔진으로 구현한 New Super Lucky's Tale 모작 포트폴리오입니다.
+단순히 플레이 장면을 재현하는 수준을 넘어, 
+
+**[ 게임의 구조적 분석 / 핵심 시스템 설계 / 직접 구현 ]** 까지 경험하면서 게임 클라이언트 개발 전반의 이해를 목표로 삼으며 프로젝트를 진행했습니다.
+
+---
 
 ## 제작기간
-**약 1.5개월 (2025/07/17 ~ 2025/08/20)**
+**약 2개월 (2024/06 ~ 2024/08)**
 
-## 리소스
-**Turbosquid, Mixamo, Unity Asset Store 등에서 제공하는 무료 에셋과 모델을 활용하여 개발되었습니다**
-
-## Characters
 <p align="center">
    <img src="GitImages/NSLT_Default.gif" width="900" />
 </p>
 
----
-## 주요 특징
-- **탑다운 3D 컨트롤**: 플레이어 이동 및 마우스 클릭 기반 목표 지정
-- **AI 및 전투 시스템**: NavMesh 기반 적 추적, 거리 기반 공격, 애니메이션 상태 관리
-- **아이템/인벤토리 시스템**: 장비, 소비 아이템 사용, 아이템 픽업
-- **이펙트 및 파티클 시스템**: GPU 기반 파티클, 스킬 효과 구현
-- **커스터마이징 가능한 애니메이션**: Idle, Move, Attack, Hit 등 상태 전환 처리
+## Characters
+
+<p align="center">
+   <img src="GitImages/CoinLoot.gif" width="500" />
+   <img src="GitImages/UI_CloverLoot.gif" width="500" />
+   <img src="GitImages/TailAttack_Heart.gif" width="500" />
+   <img src="GitImages/PlayerState_BurrowMode.gif" width="500" />
+</p>
+
+- **수집 및 루트 시스템**: 코인 및 클로버 수집, UI 연동을 통한 직관적 피드백 제공  
+- **캐릭터 핵심 조작**: 이동, 점프, 공격 등 기본 메커니즘 구현  
+- **플레이어 공격**: 충돌 감지 및 물리 기반 피격 피드백  
+- **아이템 상호작용**: Burrow Mode로 지면 내 아이템 수집 가능  
+
+<p align="center">
+   <img src="GitImages/Player_MonsterAtt.gif" width="900" />
+</p>
+
+- **전투 로직**:  
+  - Player 1차 공격 시 몬스터는 첫 번째 애니메이션 (어지러움 후 회복) 재생  
+  - Player 2차 공격 시 포물선 공식 기반 넉백 후 몬스터 Dead 처리 (두 번째 애니메이션)
+
+<p align="center">
+   <img src="GitImages/Player_LootGolemHead.gif" width="500" />
+   <img src="GitImages/Player_AttachGolemHead.gif" width="500" />
+</p>
+
+- **퀘스트 메커니즘** : 분리된 GolemHead 수집 후 Player PartObject(Hand)와 연결/해제하는 연출 구현
 
 ---
-## Characters
+## Map Tool (ImGui 기반)
+
 <p align="center">
    <img src="GitImages/DebugMode.gif" width="900" />
 </p>
 
-- Unity Character Controller와 NavMeshAgent을 활용하였습니다.
-- 3인칭 Top-Down Camera 시점으로 구현하여 유저가 바닥을 클릭하면 같은 연출을 했습니다.
-- Mouse Raycast 기반 Reticle 표시 기능 또한 추가하여 직관적인 조작감을 추가했습니다.
+<p align="center">
+   <img src="GitImages/MapTool_DebugCamera.gif" width="900" />
+   <img src="GitImages/MapTool_ObjectPosition.gif" width="500" />
+   <img src="GitImages/MapTool_ObjectRotation.gif" width="500" />
+   <img src="GitImages/MapTool_ObjectScale.gif" width="500" />
+   <img src="GitImages/MapTool_Collectibles_Delete.gif" width="500" />
+</p>
 
-## FSM(Finite State Machine) 
-- 플레이어와 몬스터 모두 FSM (Finite State Machine)구조로 구현하였습니다. 
-- 몬스터 AI는 Waypoint를 따라 순찰하며, 시야 범위 내에 플레이어가 감지되면 추적 및 전투 상태로 전환할 수 있습니다.
-- FSM 상태 : IdleState / MoveState / AttackState / DeadState
-
-## 전투 시스템
-
-- 플레이어와 몬스터의 공격 FSM을 구현하였으며, 피격/사망 처리와 함께 공격 이펙트를 연동하여 전투의 타격감을 강화했습니다.
+- **오브젝트 배치 및 편집 기능**: ImGui를 통한 위치, 회전, 스케일 조절
+- **Collectibles 관리**: 코인 및 클로버 등 삭제/배치, 회전 애니메이션 구현, 점수 증가 기능 연동
+- **디버그 카메라(Debug Camera)**: 개발 편의를 위한 자유 시점 카메라 제공  
+- **Renderer Debug Mode**: Diffuse, Normal, Depth, LightDepth, Shade, Blur, Result 뷰 지원
 
 <p align="center">
-   <img src="Packages/GitImages/MonsterAtt.gif" width="900" />
+   <img src="GitImages/MapTool_Navigation.gif" width="900" />
 </p>
+
+- **Navigation 포인트 설정**: AI 및 경로 탐색용 내비게이션 포인트 배치 가능
+   - **삼각형(Cell) 생성**:  
+  - 사용자가 3개의 포인트를 지정하면 하나의 삼각형 셀(Cell) 생성  
+  - 삼각형의 정점은 Clockwise(시계방향) 순서로 자동 정렬
+
+- **Snap 기능**:  
+  - 이미 존재하는 네비게이션 포인트 근처에 점을 찍으면 자동으로 기존 점에 스냅  
+  - Snap 반경: 0.3 유닛  
+  - 이로 인해 여유 있게 포인트를 찍어도 삼각형이 깔끔하게 연결됨
+
+- **Pixel Picking 기반 위치 계산**:  
+  - 마우스 클릭 시 픽셀 좌표를 기반으로 월드 좌표 계산  
+  - `_vector vPickedPos = XMVectorSetW(XMLoadFloat4(&m_pGameInstance->Get_PickedPos()), 1.f);`  
+  - 계산된 위치를 `_float3` 형태로 변환 후 Snap 적용
+
+- **시계방향 정렬(Clockwise Ordering)**:  
+  - 삼각형 생성 시 정점 순서를 시계방향으로 정렬하여 렌더링 및 경로 탐색 안정성 확보  
+  - `IsClockwise()` 함수로 벡터 외적을 이용해 방향 판단  
+  - 필요 시 `_vec[1]`과 `_vec[2]`를 교환하여 시계방향 보장
+   
 
 ---
-## Inventory/Equipment
 
+### Gimmick Objects
 <p align="center">
-   <img src="Packages/GitImages/InventoryUI_Diagram.png" width="900" />
+   <img src="GitImages/Gimmich_SpringMushroom2.gif" width="500" />
+   <img src="GitImages/Gimmick_Bell.gif" width="500" />
+   <img src="GitImages/Gimmick_Checkpoint.gif" width="500" />
+   <img src="GitImages/Gimmick_EntranceGate.gif" width="500" />
 </p>
 
-- 장비 아이템(Equipment)은 인벤토리에서 장착할 수 있으며, 무기(일반Mesh) 및 방어구(Skinned Mesh)를 캐릭터에 교체 적용할 수 있습니다. 
-
-## Equip Skinned Mesh
-
-<p align="center">
-   <img src="Packages/GitImages/EquipSkinned.gif" width="900" />
-</p>
-
-- 무료 Asset의 한계를 보완하기 위해 Blender에서 Skinned Mesh 모델을 직접 제작하여 게임 내에 적용했습니다.
-- 플레이어 모델에서 Armature(Bone)을 유지하고, 신발, 갑옷, 장갑 등의 부분별 Skinned Mesh모델을 Blender에서 직접 제작했습니다. 
-- 각 차프는 쨍한 초록/주황 계열의 재질(Material)로 구분하여 시각적 효과를 강조했습니다. 
-
-## Equip Separate Model Mesh
-
-<p align="center">
-   <img src="Packages/GitImages/EquipMesh.gif" width="900" />
-</p>
-
-- 플레이어 기본 모델의 Armature를 재활용하여, 무기 Mesh들을 Unity Armature(Bone)에 수작업으로 연결했습니다.
-- 이 과정을 통해 애니메이션 동작 시 PartObject가 자연스럽게 움직이도록 구현하였으며, Player Mesh를 제외한 Armature와 무기/장비 파츠만을 Prefab으로 제작하여 장비 교체 시스템을 표현했습니다.
+- **점프 패드(Jump Pad)**: 플레이어 콜라이더 충돌 시 스케일 변화 + Bouncing 효과 적용  
+- **체크포인트(Checkpoint)**: 진입 시 애니메이션 및 이펙트 실행  
+- **게이트(Entrance Gate)**: Blender로 pivot point를 문 끝으로 설정 후 직접 회전 구현, 문 열림 애니메이션 없음  
+- **미로 벨 & 벽(Maze Bell & Wall)**: 종 이벤트 트리거로 벽 지진 효과와 이동 연출 구현  
 
 ---
-## Loot & Consume Items
 
+### Monster AI
 <p align="center">
-  <img src="Packages/GitImages/LootItems.gif" width="900" />
+   <img src="GitImages/Monster_TrackPlayer.gif" width="900" />
 </p>
 
-- 바닥에 떨어진 아이템과 충돌 시 자동으로 아이템 습득 후 인벤토리에 추가됩니다.
-
-<p align="center">
-  <img src="Packages/GitImages/ConsumeItems.gif" width="900" />
-</p>
-
-- Consumable Item (예: HP Potion, Mushroom 등)은 인벤토리에서 우클릭 사용 시 체력을 회복하는 등 지정된 Stats을 증가시킬 수 있습니다.
-
-<p align="center">
-  <img src="Packages/GitImages/EquipItems.gif" width="900" />
-</p>
+- **플레이어 추적 AI**: 단순 상태 머신(State Machine) 기반 동작 구현  
+- **공격 및 반응 로직**:  
+  - Player 1차 공격 시 몬스터는 A 애니메이션(어지러움 → 회복) 재생  
+  - Player 2차 공격 시 포물선 공식 기반 넉백 후 제거  
+- **상태 전환(State Transition)**: Idle → 추적(Track) → 공격(Attack) → 피격(Reaction) 
 
 ---
-## NPC Dialogue System
-<p align="center">
-   <img src="Packages/GitImages/NPC.gif" width="900" />
-</p>
 
-<p align="center">
-   (해당 다이얼로그 내용은 AI로 생성되었습니다)
-</p>
+## Rendering / Optimization
 
-- 특정 NPC를 우클릭으로 Targeting 후, 플레이어가 지정된 거리까지 이동하면 대화가 시작됩니다.
-- NPC와의 대화 시 대화창 UI가 열리고 애니메이션이 연동되어 자연스러운 연출을 구현했습니다.
+- Instancing 기반 렌더링 → 다수 오브젝트 성능 최적화
+- Frustum Culling → 불필요한 드로우콜 제거
 
 ---
 ## 개발 환경
-- Engine: Unity 6
-- Language: C#
+- Engine: DirectX11 기반 자체 엔진
+- Language: C++
 - IDE: Visual Studio
