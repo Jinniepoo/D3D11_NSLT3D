@@ -58,9 +58,16 @@
    <img src="GitImages/DebugMode.gif" width="900" />
 </p>
 
+- **Renderer Debug Mode**: Diffuse, Normal, Depth, LightDepth, Shade, Blur, Result 뷰 지원
+
 <p align="center">
    <img src="GitImages/MapTool_DebugCamera.gif" width="900" />
-   <img src="GitImages/MapTool_ObjectPosition.gif" width="400" />
+</p>
+   
+- **디버그 카메라(Debug Camera)**: 개발 편의를 위한 자유 시점 카메라 제공
+
+<p align="center">
+  <img src="GitImages/MapTool_ObjectPosition.gif" width="400" />
    <img src="GitImages/MapTool_ObjectRotation.gif" width="400" />
    <img src="GitImages/MapTool_ObjectScale.gif" width="400" />
    <img src="GitImages/MapTool_Collectibles_Delete.gif" width="400" />
@@ -68,8 +75,6 @@
 
 - **오브젝트 배치 및 편집 기능**: ImGui를 통한 위치, 회전, 스케일 조절
 - **Collectibles 관리**: 코인 및 클로버 등 삭제/배치, 회전 애니메이션 구현, 점수 증가 기능 연동
-- **디버그 카메라(Debug Camera)**: 개발 편의를 위한 자유 시점 카메라 제공  
-- **Renderer Debug Mode**: Diffuse, Normal, Depth, LightDepth, Shade, Blur, Result 뷰 지원
 
 <p align="center">
    <img src="GitImages/MapTool_Navigation.gif" width="900" />
@@ -101,8 +106,8 @@
 ### Gimmick Objects
 <p align="center">
    <img src="GitImages/Gimmich_SpringMushroom2.gif" width="400" />
-   <img src="GitImages/Gimmick_Bell.gif" width="400" />
    <img src="GitImages/Gimmick_Checkpoint.gif" width="400" />
+   <img src="GitImages/Gimmick_Bell.gif" width="400" />
    <img src="GitImages/Gimmick_EntranceGate.gif" width="400" />
 </p>
 
@@ -119,9 +124,6 @@
 </p>
 
 - **플레이어 추적 AI**: 단순 상태 머신(State Machine) 기반 동작 구현  
-- **공격 및 반응 로직**:  
-  - Player 1차 공격 시 몬스터는 A 애니메이션(어지러움 → 회복) 재생  
-  - Player 2차 공격 시 포물선 공식 기반 넉백 후 제거  
 - **상태 전환(State Transition)**: Idle → 추적(Track) → 공격(Attack) → 피격(Reaction) 
 
 ---
